@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */; };
+		C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF042B603D0D003C4FA5 /* ContentView.swift */; };
+		C121EF072B603D0E003C4FA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C121EF062B603D0E003C4FA5 /* Assets.xcassets */; };
+		C121EF0A2B603D0E003C4FA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C121EF092B603D0E003C4FA5 /* Preview Assets.xcassets */; };
+		C121EF142B603D0E003C4FA5 /* MyMuzeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */; };
+		C121EF1E2B603D0E003C4FA5 /* MyMuzeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */; };
+		C121EF202B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C121EF102B603D0E003C4FA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C121EEF72B603D0C003C4FA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C121EEFE2B603D0C003C4FA5;
+			remoteInfo = MyMuze;
+		};
+		C121EF1A2B603D0E003C4FA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C121EEF72B603D0C003C4FA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C121EEFE2B603D0C003C4FA5;
+			remoteInfo = MyMuze;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C121EEFF2B603D0D003C4FA5 /* MyMuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeApp.swift; sourceTree = "<group>"; };
+		C121EF042B603D0D003C4FA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C121EF062B603D0E003C4FA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C121EF092B603D0E003C4FA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C121EF0F2B603D0E003C4FA5 /* MyMuzeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMuzeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeTests.swift; sourceTree = "<group>"; };
+		C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMuzeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITests.swift; sourceTree = "<group>"; };
+		C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C121EEFC2B603D0C003C4FA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF0C2B603D0E003C4FA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF162B603D0E003C4FA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C121EEF62B603D0C003C4FA5 = {
+			isa = PBXGroup;
+			children = (
+				C121EF012B603D0D003C4FA5 /* MyMuze */,
+				C121EF122B603D0E003C4FA5 /* MyMuzeTests */,
+				C121EF1C2B603D0E003C4FA5 /* MyMuzeUITests */,
+				C121EF002B603D0D003C4FA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C121EF002B603D0D003C4FA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C121EEFF2B603D0D003C4FA5 /* MyMuze.app */,
+				C121EF0F2B603D0E003C4FA5 /* MyMuzeTests.xctest */,
+				C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C121EF012B603D0D003C4FA5 /* MyMuze */ = {
+			isa = PBXGroup;
+			children = (
+				C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */,
+				C121EF042B603D0D003C4FA5 /* ContentView.swift */,
+				C121EF062B603D0E003C4FA5 /* Assets.xcassets */,
+				C121EF082B603D0E003C4FA5 /* Preview Content */,
+			);
+			path = MyMuze;
+			sourceTree = "<group>";
+		};
+		C121EF082B603D0E003C4FA5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C121EF092B603D0E003C4FA5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C121EF122B603D0E003C4FA5 /* MyMuzeTests */ = {
+			isa = PBXGroup;
+			children = (
+				C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */,
+			);
+			path = MyMuzeTests;
+			sourceTree = "<group>";
+		};
+		C121EF1C2B603D0E003C4FA5 /* MyMuzeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */,
+				C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */,
+			);
+			path = MyMuzeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C121EEFE2B603D0C003C4FA5 /* MyMuze */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C121EF232B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuze" */;
+			buildPhases = (
+				C121EEFB2B603D0C003C4FA5 /* Sources */,
+				C121EEFC2B603D0C003C4FA5 /* Frameworks */,
+				C121EEFD2B603D0C003C4FA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyMuze;
+			productName = MyMuze;
+			productReference = C121EEFF2B603D0D003C4FA5 /* MyMuze.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C121EF0E2B603D0E003C4FA5 /* MyMuzeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C121EF262B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeTests" */;
+			buildPhases = (
+				C121EF0B2B603D0E003C4FA5 /* Sources */,
+				C121EF0C2B603D0E003C4FA5 /* Frameworks */,
+				C121EF0D2B603D0E003C4FA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C121EF112B603D0E003C4FA5 /* PBXTargetDependency */,
+			);
+			name = MyMuzeTests;
+			productName = MyMuzeTests;
+			productReference = C121EF0F2B603D0E003C4FA5 /* MyMuzeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C121EF182B603D0E003C4FA5 /* MyMuzeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C121EF292B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeUITests" */;
+			buildPhases = (
+				C121EF152B603D0E003C4FA5 /* Sources */,
+				C121EF162B603D0E003C4FA5 /* Frameworks */,
+				C121EF172B603D0E003C4FA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C121EF1B2B603D0E003C4FA5 /* PBXTargetDependency */,
+			);
+			name = MyMuzeUITests;
+			productName = MyMuzeUITests;
+			productReference = C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C121EEF72B603D0C003C4FA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					C121EEFE2B603D0C003C4FA5 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					C121EF0E2B603D0E003C4FA5 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = C121EEFE2B603D0C003C4FA5;
+					};
+					C121EF182B603D0E003C4FA5 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = C121EEFE2B603D0C003C4FA5;
+					};
+				};
+			};
+			buildConfigurationList = C121EEFA2B603D0C003C4FA5 /* Build configuration list for PBXProject "MyMuze" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C121EEF62B603D0C003C4FA5;
+			productRefGroup = C121EF002B603D0D003C4FA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C121EEFE2B603D0C003C4FA5 /* MyMuze */,
+				C121EF0E2B603D0E003C4FA5 /* MyMuzeTests */,
+				C121EF182B603D0E003C4FA5 /* MyMuzeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C121EEFD2B603D0C003C4FA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C121EF0A2B603D0E003C4FA5 /* Preview Assets.xcassets in Resources */,
+				C121EF072B603D0E003C4FA5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF0D2B603D0E003C4FA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF172B603D0E003C4FA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C121EEFB2B603D0C003C4FA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */,
+				C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF0B2B603D0E003C4FA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C121EF142B603D0E003C4FA5 /* MyMuzeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C121EF152B603D0E003C4FA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C121EF1E2B603D0E003C4FA5 /* MyMuzeUITests.swift in Sources */,
+				C121EF202B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C121EF112B603D0E003C4FA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C121EEFE2B603D0C003C4FA5 /* MyMuze */;
+			targetProxy = C121EF102B603D0E003C4FA5 /* PBXContainerItemProxy */;
+		};
+		C121EF1B2B603D0E003C4FA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C121EEFE2B603D0C003C4FA5 /* MyMuze */;
+			targetProxy = C121EF1A2B603D0E003C4FA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C121EF212B603D0F003C4FA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C121EF222B603D0F003C4FA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C121EF242B603D0F003C4FA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyMuze/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuze;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C121EF252B603D0F003C4FA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyMuze/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuze;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C121EF272B603D0F003C4FA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuzeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMuze.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyMuze";
+			};
+			name = Debug;
+		};
+		C121EF282B603D0F003C4FA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuzeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMuze.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyMuze";
+			};
+			name = Release;
+		};
+		C121EF2A2B603D0F003C4FA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuzeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyMuze;
+			};
+			name = Debug;
+		};
+		C121EF2B2B603D0F003C4FA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DiamondAndPete.MyMuzeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyMuze;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C121EEFA2B603D0C003C4FA5 /* Build configuration list for PBXProject "MyMuze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C121EF212B603D0F003C4FA5 /* Debug */,
+				C121EF222B603D0F003C4FA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C121EF232B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C121EF242B603D0F003C4FA5 /* Debug */,
+				C121EF252B603D0F003C4FA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C121EF262B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C121EF272B603D0F003C4FA5 /* Debug */,
+				C121EF282B603D0F003C4FA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C121EF292B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C121EF2A2B603D0F003C4FA5 /* Debug */,
+				C121EF2B2B603D0F003C4FA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C121EEF72B603D0C003C4FA5 /* Project object */;
+}
