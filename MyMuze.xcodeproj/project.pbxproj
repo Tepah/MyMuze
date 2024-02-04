@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117E32B2B6980A80077FF62 /* LoginView.swift */; };
 		C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */; };
 		C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF042B603D0D003C4FA5 /* ContentView.swift */; };
 		C121EF072B603D0E003C4FA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C121EF062B603D0E003C4FA5 /* Assets.xcassets */; };
@@ -14,6 +15,11 @@
 		C121EF142B603D0E003C4FA5 /* MyMuzeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */; };
 		C121EF1E2B603D0E003C4FA5 /* MyMuzeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */; };
 		C121EF202B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */; };
+		C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E432B6DC55E001AADDA /* AppleButton.swift */; };
+		C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */; };
+		C1C46E482B6DC946001AADDA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E472B6DC946001AADDA /* Color.swift */; };
+		C1C46E4E2B6DCD86001AADDA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */; };
+		C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C117E32B2B6980A80077FF62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C121EEFF2B603D0D003C4FA5 /* MyMuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeApp.swift; sourceTree = "<group>"; };
 		C121EF042B603D0D003C4FA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +51,9 @@
 		C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMuzeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITests.swift; sourceTree = "<group>"; };
 		C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C1C46E432B6DC55E001AADDA /* AppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleButton.swift; sourceTree = "<group>"; };
+		C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		C1C46E472B6DC946001AADDA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C46E4E2B6DCD86001AADDA /* GoogleSignIn in Frameworks */,
+				C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +83,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C117E32A2B69806D0077FF62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C121EF042B603D0D003C4FA5 /* ContentView.swift */,
+				C117E32B2B6980A80077FF62 /* LoginView.swift */,
+				C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C121EEF62B603D0C003C4FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +116,9 @@
 		C121EF012B603D0D003C4FA5 /* MyMuze */ = {
 			isa = PBXGroup;
 			children = (
+				C1C46E422B6DC54A001AADDA /* Components */,
+				C117E32A2B69806D0077FF62 /* Views */,
 				C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */,
-				C121EF042B603D0D003C4FA5 /* ContentView.swift */,
 				C121EF062B603D0E003C4FA5 /* Assets.xcassets */,
 				C121EF082B603D0E003C4FA5 /* Preview Content */,
 			);
@@ -127,6 +150,15 @@
 			path = MyMuzeUITests;
 			sourceTree = "<group>";
 		};
+		C1C46E422B6DC54A001AADDA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C1C46E432B6DC55E001AADDA /* AppleButton.swift */,
+				C1C46E472B6DC946001AADDA /* Color.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +175,10 @@
 			dependencies = (
 			);
 			name = MyMuze;
+			packageProductDependencies = (
+				C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */,
+				C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */,
+			);
 			productName = MyMuze;
 			productReference = C121EEFF2B603D0D003C4FA5 /* MyMuze.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +251,10 @@
 				Base,
 			);
 			mainGroup = C121EEF62B603D0C003C4FA5;
+			packageReferences = (
+				C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = C121EF002B603D0D003C4FA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +297,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */,
+				C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */,
 				C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */,
+				C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */,
 				C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */,
+				C1C46E482B6DC946001AADDA /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +626,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.20.0;
+			};
+		};
+		C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C121EEF72B603D0C003C4FA5 /* Project object */;
 }

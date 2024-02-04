@@ -11,7 +11,8 @@ import SwiftUI
 struct MyMuzeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+                .background(Color(UIColor(red: 0.117, green: 0.117, blue: 0.117, alpha: 1.0)))
         }
     }
 }
