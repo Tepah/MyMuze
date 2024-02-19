@@ -19,3 +19,10 @@ extension Color {
         )
     }
 }
+
+extension Color {
+    // Used to set global colors of the app
+    static let myMuzeBlack = Color(hex: 0x1E1E1E)
+    static let myMuzeAccent = Color(hex: 0x8364FF)
+    static let myMuzeWhite = Color(hex: 0xFFFFFF)
+}

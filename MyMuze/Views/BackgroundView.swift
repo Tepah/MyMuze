@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BackgroundView: View {
+    // Background View used for entirety of the app
     var body: some View {
-        LinearGradient(colors: [Color(hex: 0x121212), Color(hex:0x1E1E1E)], startPoint: .top, endPoint: .bottom)
+        LinearGradient(colors: [Color(hex: 0x121212), Color.myMuzeBlack], startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea()
     }
 }
