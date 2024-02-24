@@ -9,8 +9,24 @@ import SwiftUI
 
 struct ProfileUI: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        Color.black
+            .ignoresSafeArea()
+            .overlay(
+                VStack {
+                    Text("User Profile")
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .bold()
+                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                        .padding(.trailing)
+                    Divider()
+                        .overlay(.white)
+                        .frame(height: 2)
+                        .background(Color.white)
+                    Spacer()
+                }
+            )
+        }
 }
 
 #Preview {

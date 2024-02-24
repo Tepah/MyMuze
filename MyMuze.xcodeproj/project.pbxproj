@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA0092B7C07A200014F4D /* HomeUI.swift */; };
+		7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0E7782B887E08001D3C83 /* ProfileUI.swift */; };
 		C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */; };
 		C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF042B603D0D003C4FA5 /* ContentView.swift */; };
 		C121EF072B603D0E003C4FA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C121EF062B603D0E003C4FA5 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		7E8AA0092B7C07A200014F4D /* HomeUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUI.swift; sourceTree = "<group>"; };
+		7EF0E7782B887E08001D3C83 /* ProfileUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUI.swift; sourceTree = "<group>"; };
 		C121EEFF2B603D0D003C4FA5 /* MyMuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeApp.swift; sourceTree = "<group>"; };
 		C121EF042B603D0D003C4FA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				C121EF042B603D0D003C4FA5 /* ContentView.swift */,
 				7E8AA0092B7C07A200014F4D /* HomeUI.swift */,
+				7EF0E7782B887E08001D3C83 /* ProfileUI.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */,
+				7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */,
 				C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */,
 				C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */,
 			);
