@@ -12,18 +12,27 @@ struct ContentView: View {
         Color.black
             .ignoresSafeArea()
             .overlay(
-                VStack {
-                    Image(systemName: "music.note")
-                        .foregroundColor(Color("Accent Color"))
-                        .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("MyMuze")
-                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("Accent Color"))
-            }
-            .padding())
-        
+                TabView {
+                    Group {
+                        HomeUI()
+                            .tabItem {
+                                Label("Home", systemImage: "house")
+                            }
+                        Text("Post")
+                            .tabItem {
+                                Label("Post", systemImage: "plus.circle.fill")
+                            }
+                        ProfileUI()
+                            .tabItem {
+                                Label("Profile", systemImage: "person.crop.circle.fill")
+                            }
+                    }
+                    .toolbar(.visible, for: .tabBar)
+                    .toolbarBackground(Color.gray, for: .tabBar
+                    )
+                }
+                    .accentColor(Color("Accent Color"))
+            )
     }
 }
 
