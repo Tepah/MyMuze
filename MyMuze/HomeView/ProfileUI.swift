@@ -18,7 +18,7 @@ struct ProfileUI: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                        .padding(.trailing)
+                        .padding([.leading, .bottom], 10.0)
                     Divider()
                         .overlay(.white)
                         .frame(height: 2)
