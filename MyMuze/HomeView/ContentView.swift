@@ -18,7 +18,7 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
-                        Text("Post")
+                        PostUI()
                             .tabItem {
                                 Label("Post", systemImage: "plus.circle.fill")
                             }
