@@ -9,7 +9,23 @@ import SwiftUI
 
 struct PostUI: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Color.black
+            .ignoresSafeArea()
+            .overlay(
+                VStack {
+                    Text("Create a Post")
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .bold()
+                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                        .padding([.leading, .bottom], 10.0)
+                    Divider()
+                        .overlay(.white)
+                        .frame(height: 2)
+                        .background(Color.white)
+                    Spacer()
+                }
+            )
     }
 }
 
