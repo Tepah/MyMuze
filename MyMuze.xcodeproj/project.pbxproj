@@ -15,6 +15,12 @@
 		C121EF142B603D0E003C4FA5 /* MyMuzeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */; };
 		C121EF1E2B603D0E003C4FA5 /* MyMuzeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */; };
 		C121EF202B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */; };
+		C19893A62B92726200AB9F65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19893A52B92726200AB9F65 /* GoogleService-Info.plist */; };
+		C19893A82B92730200AB9F65 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C19893A72B92730200AB9F65 /* FirebaseAnalytics */; };
+		C19893AA2B92730200AB9F65 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C19893A92B92730200AB9F65 /* FirebaseAuth */; };
+		C19893AC2B92730200AB9F65 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C19893AB2B92730200AB9F65 /* FirebaseFirestore */; };
+		C19893AE2B92730200AB9F65 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C19893AD2B92730200AB9F65 /* FirebaseFirestoreSwift */; };
+		C19893B02B92730200AB9F65 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C19893AF2B92730200AB9F65 /* FirebaseStorage */; };
 		C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E432B6DC55E001AADDA /* AppleButton.swift */; };
 		C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */; };
 		C1C46E482B6DC946001AADDA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E472B6DC946001AADDA /* Color.swift */; };
@@ -53,6 +59,7 @@
 		C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMuzeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITests.swift; sourceTree = "<group>"; };
 		C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C19893A52B92726200AB9F65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1C46E432B6DC55E001AADDA /* AppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleButton.swift; sourceTree = "<group>"; };
 		C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		C1C46E472B6DC946001AADDA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -67,6 +74,11 @@
 			files = (
 				C1C46E4E2B6DCD86001AADDA /* GoogleSignIn in Frameworks */,
 				C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */,
+				C19893A82B92730200AB9F65 /* FirebaseAnalytics in Frameworks */,
+				C19893AC2B92730200AB9F65 /* FirebaseFirestore in Frameworks */,
+				C19893B02B92730200AB9F65 /* FirebaseStorage in Frameworks */,
+				C19893AA2B92730200AB9F65 /* FirebaseAuth in Frameworks */,
+				C19893AE2B92730200AB9F65 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +133,7 @@
 		C121EF012B603D0D003C4FA5 /* MyMuze */ = {
 			isa = PBXGroup;
 			children = (
+				C19893A52B92726200AB9F65 /* GoogleService-Info.plist */,
 				C1C46E422B6DC54A001AADDA /* Components */,
 				C117E32A2B69806D0077FF62 /* Views */,
 				C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */,
@@ -184,6 +197,11 @@
 			packageProductDependencies = (
 				C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */,
 				C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */,
+				C19893A72B92730200AB9F65 /* FirebaseAnalytics */,
+				C19893A92B92730200AB9F65 /* FirebaseAuth */,
+				C19893AB2B92730200AB9F65 /* FirebaseFirestore */,
+				C19893AD2B92730200AB9F65 /* FirebaseFirestoreSwift */,
+				C19893AF2B92730200AB9F65 /* FirebaseStorage */,
 			);
 			productName = MyMuze;
 			productReference = C121EEFF2B603D0D003C4FA5 /* MyMuze.app */;
@@ -279,6 +297,7 @@
 			files = (
 				C121EF0A2B603D0E003C4FA5 /* Preview Assets.xcassets in Resources */,
 				C121EF072B603D0E003C4FA5 /* Assets.xcassets in Resources */,
+				C19893A62B92726200AB9F65 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +674,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C19893A72B92730200AB9F65 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C19893A92B92730200AB9F65 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C19893AB2B92730200AB9F65 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		C19893AD2B92730200AB9F65 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		C19893AF2B92730200AB9F65 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

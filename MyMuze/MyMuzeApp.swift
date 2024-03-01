@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
+}
 
 @main
 struct MyMuzeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            LoginView()
-                .background(Color(UIColor(red: 0.117, green: 0.117, blue: 0.117, alpha: 1.0)))
-        }
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+  var body: some Scene {
+    WindowGroup {
+      NavigationView {
+        LoginView()
+      }
     }
+  }
 }
