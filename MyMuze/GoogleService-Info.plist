@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>MyMuze</string>
+	<string>DiamondAndPete.MyMuze</string>
 	<key>PROJECT_ID</key>
 	<string>mymuze-59319</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:17352049301:ios:649e4f2ca7f76897b6919c</string>
+	<string>1:17352049301:ios:7d69bf6744779a4bb6919c</string>
 </dict>
 </plist>

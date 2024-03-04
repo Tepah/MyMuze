@@ -17,6 +17,21 @@ func verifyPhoneSignIn(_ phoneNumber: String) {
                 return
             }
             UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            print("Verification code sent to \(phoneNumber)")
         }
 }
 
+func verifyCode(_ code: String) -> Bool{
+    let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+    let credential = PhoneAuthProvider.provider().credential(
+        withVerificationID: verificationID!,
+        verificationCode: code)
+    Auth.auth().signIn(with: credential) { authResult, error in
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        print("User is signed in with UID: \(authResult!.user.uid)")
+    }
+    return Auth.auth().currentUser != nil
+}

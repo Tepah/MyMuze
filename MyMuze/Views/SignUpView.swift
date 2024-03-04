@@ -97,7 +97,7 @@ struct SignUpView: View {
                             Button("Sign up") {
                                 inputError = VerifySignUp
                                 if !inputError {
-                                    verifyPhoneSignIn(phone1+phone2+phone3)
+                                    verifyPhoneSignIn("+1"+phone1+phone2+phone3)
                                     verificationModalPresented = true
                                 }
                             }

@@ -8,7 +8,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>app-1-17352049301-ios-7d69bf6744779a4bb6919c</string>
+			</array>
 		</dict>
 	</array>
 </dict>

@@ -37,7 +37,7 @@ struct VerificationModal: View {
             }
             .overlay(alignment: .bottomTrailing) {
                 Button(action: {
-                    inputError = true
+                    handleVerify()
                 }) {
                     Image(systemName: "pencil.circle.fill")
                         .symbolRenderingMode(.multicolor)
@@ -49,14 +49,18 @@ struct VerificationModal: View {
             }
             .navigationBarItems(leading:
                 Button(action: {
-                // Handle the close action
+                    
                 }) {
-                Image(systemName: "xmark.circle.fill") // You can use any image or text for the close button
+                Image(systemName: "xmark.circle.fill")
                     .imageScale(.large)
-                    .foregroundColor(.blue) // Adjust the color as needed
+                    .foregroundColor(.white)
                 }
             )
         )
+    }
+    
+    func handleVerify() {
+        inputError = verifyCode(verificationCode)
     }
     
 }
