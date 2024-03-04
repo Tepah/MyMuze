@@ -21,6 +21,7 @@ struct SignUpView: View {
     @State private var phone2: String = ""
     @State private var phone3: String = ""
     @State private var inputError: Bool = false
+    @State private var verificationModalPresented = false
     private var phoneLimit3 = 4
     
     @FocusState private var focusedField: Field?
@@ -96,8 +97,8 @@ struct SignUpView: View {
                             Button("Sign up") {
                                 inputError = VerifySignUp
                                 if !inputError {
-                                    // Add user to database
-                                    presentationMode.wrappedValue.dismiss()
+                                    verifyPhoneSignIn(phone1+phone2+phone3)
+                                    verificationModalPresented = true
                                 }
                             }
                             .foregroundColor(.black)
@@ -107,11 +108,11 @@ struct SignUpView: View {
                     Spacer()
                 }
                 .alert(isPresented: $inputError) {
-                            Alert(
-                                title: Text("Invalid Input"),
-                                message: Text("Please make sure all fields are filled out correctly."),
-                                dismissButton: .default(Text("OK"))
-                            )
+                    Alert(
+                        title: Text("Invalid Input"),
+                        message: Text("Please make sure all fields are filled out correctly."),
+                        dismissButton: .default(Text("OK"))
+                    )
                 }
                 .onChange(of: avatarItem) {
                     Task {
@@ -121,6 +122,9 @@ struct SignUpView: View {
                             print("Failed")
                         }
                     }
+                }
+                .sheet(isPresented: $verificationModalPresented) {
+                    VerificationModal()
                 }
             )
             .navigationBarTitle("Sign Up", displayMode: .inline)
@@ -149,7 +153,7 @@ struct SignUpView: View {
         var nameError = false
         var  usernameError = false
         var phoneError = false
-        var phone = phone1 + phone2 + phone3
+        let phone = phone1 + phone2 + phone3
         
         nameError = name.isEmpty || name.count < 3
         usernameError = username.isEmpty || username.count < 3
@@ -157,10 +161,11 @@ struct SignUpView: View {
         
         return nameError || usernameError || phoneError
     }
+    
 }
 
 extension View {
-    /// Creates an easy way to focus the next field when the numbers are too large
+    /// Creates an easy way to focus the next TextField when the numbers are too large
     
     func focusNextField<F: RawRepresentable>(_ field: FocusState<F?>.Binding) where F.RawValue == Int {
         guard let currentValue = field.wrappedValue else { return }
