@@ -58,7 +58,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .fontWeight(.medium)
                                 .font(.system(size: 20))
-                            NavigationLink(destination: SignUpView(), label: {
+                            NavigationLink(destination: PhoneSignInView(), label: {
                                 Text("Sign Up")
                                 .foregroundColor(Color.myMuzeAccent)
                                 .fontWeight(.medium)

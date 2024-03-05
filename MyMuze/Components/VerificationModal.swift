@@ -23,7 +23,6 @@ struct VerificationModal: View {
                     .frame(width: 300)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .shadow(radius: 5)
-                
             }
             .frame(width: 350, height: 170)
             .background(Color(hex: 0x494949))

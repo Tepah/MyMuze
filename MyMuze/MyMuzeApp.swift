@@ -13,15 +13,43 @@ import FirebaseAuth
 struct MyMuzeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var authManager = AuthManager()
+    @State private var userExists: Bool?
     
     var body: some Scene {
         WindowGroup {
             if authManager.isUserAuthenticated {
-                ContentView()
-                    .environmentObject(authManager)
+                if let userExists = userExists {
+                    if userExists {
+                        ContentView()
+                            .environmentObject(authManager)
+                    } else {
+                        SignUpView()
+                            .environmentObject(authManager)
+                    }
+                } else {
+                    Text("Loading...")
+                        .onAppear {
+                            loadData()
+                        }
+                }
             } else {
                 LoginView()
                     .environmentObject(authManager)
+            }
+        }
+    }
+    
+    func loadData() {
+        Task {
+            do {
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    let userExists = await doesUserExistWithUID(uid: uid)
+                    self.userExists = userExists
+                }
+            } catch {
+                print("Error loading data:", error.localizedDescription)
             }
         }
     }

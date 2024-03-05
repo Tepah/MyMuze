@@ -21,7 +21,7 @@ func verifyPhoneSignIn(_ phoneNumber: String) {
         }
 }
 
-func verifyCode(_ code: String) -> Bool{
+func verifyCode(_ code: String) -> Bool {
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
     let credential = PhoneAuthProvider.provider().credential(
         withVerificationID: verificationID!,
