@@ -7,7 +7,9 @@
 
 import Foundation
 import FirebaseAuth
+import GoogleSignIn
 import UIKit
+import FirebaseCore
 
 func verifyPhoneSignIn(_ phoneNumber: String) {
     PhoneAuthProvider.provider()
@@ -35,3 +37,4 @@ func verifyCode(_ code: String) -> Bool {
     }
     return Auth.auth().currentUser != nil
 }
+
