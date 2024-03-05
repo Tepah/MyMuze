@@ -47,10 +47,12 @@ struct LoginView: View {
                                 .foregroundColor(Color.myMuzeAccent)
                                 .frame(width:200, height:60)
                                 .overlay(
-                                    Text("Sign in with Phone")
-                                        .foregroundColor(.black)
-                                        .fontWeight(.medium)
-                                        .font(.system(size:20))
+                                    NavigationLink(destination: PhoneSignInView(), label: {
+                                        Text("Sign in with Phone")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.medium)
+                                            .font(.system(size:20))
+                                    })
                                 )
                         }
                         HStack {

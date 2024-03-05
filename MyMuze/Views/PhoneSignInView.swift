@@ -101,6 +101,7 @@ struct PhoneSignInView: View {
                     }
                 }
             )
+            .navigationBarBackButtonHidden(true)
     }
     
     func limitText(_ upper: Int) {

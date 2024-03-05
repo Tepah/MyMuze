@@ -109,6 +109,15 @@ struct SignUpView: View {
                             .fontWeight(.medium)
                             .font(.system(size: 20))
                         )
+                    Button("Logout") {
+                        do {
+                            try Auth.auth().signOut()
+                            // Set isLoggedIn to false
+                            UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                        } catch {
+                            print("Error signing out: \(error.localizedDescription)")
+                        }
+                    }
                     Spacer()
                 }
                 .alert(isPresented: $inputError) {
