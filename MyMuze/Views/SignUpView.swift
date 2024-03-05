@@ -143,6 +143,7 @@ struct SignUpView: View {
         }
         let user = Auth.auth().currentUser
         let userData = UserData(profilePicture: "", username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
+        authManager.phoneNumber = nil
         addUserDataToFirestore(userData: userData)
         authManager.signUp()
     }

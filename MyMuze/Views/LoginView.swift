@@ -33,7 +33,35 @@ struct LoginView: View {
                         }
                         .padding(5)
                         Button (action: {
-                            handleGoogleLogin()
+                            if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                                // Start the sign in flow for google
+                                GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { result, error in
+                                    guard error == nil else {
+                                        print("Error with Google Sign in: \(error?.localizedDescription ?? "Unknown error")")
+                                        return
+                                    }
+
+                                    guard let user = result?.user,
+                                        let idToken = user.idToken?.tokenString
+                                    else {
+                                        print("Error with Google Sign in: User or ID Token is nil")
+                                        return
+                                    }
+
+                                    let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                                   accessToken: user.accessToken.tokenString)
+
+                                    Auth.auth().signIn(with: credential) { authResult, error in
+                                        if let error = error {
+                                            // Handle Firebase authentication error
+                                            print("Firebase google authentication error: \(error.localizedDescription)")
+                                            return
+                                        }
+                                        // User successfully authenticated with Firebase
+                                        print("User authenticated with Firebase using Google")
+                                    }
+                                }
+                            }
                         }) {
                             Image("GoogleButton")
                                 .aspectRatio(contentMode: .fit)
@@ -75,33 +103,6 @@ struct LoginView: View {
                     }
                 )
         }
-    }
-    
-    func handleGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-          guard error == nil else {
-            // ...
-          }
-
-          guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
-          else {
-            // ...
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-
-          // ...
-        }
-
     }
 }
 

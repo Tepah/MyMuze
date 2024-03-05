@@ -15,6 +15,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        // Get the clientID from FirebaseApp options
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return true }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
         Auth.auth().addStateDidChangeListener { (auth, user) in
                     if let user = user {
                         // User is signed in

@@ -141,6 +141,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C1181A802B97D15C00750804 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				C1ABF3352B968F2A005C6B1E /* UserData.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
 		C121EEF62B603D0C003C4FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +172,7 @@
 		C121EF012B603D0D003C4FA5 /* MyMuze */ = {
 			isa = PBXGroup;
 			children = (
+				C1181A802B97D15C00750804 /* Modals */,
 				C1ABF3322B9506F7005C6B1E /* MyMuze.entitlements */,
 				C1ABF32F2B9503E6005C6B1E /* Info.plist */,
 				C19893A52B92726200AB9F65 /* GoogleService-Info.plist */,
@@ -211,7 +220,6 @@
 				C1D816682B84069D00513C21 /* NavigationBarExtensions.swift */,
 				C1ABF3302B9504E0005C6B1E /* Login.swift */,
 				C1ABF3332B950937005C6B1E /* VerificationModal.swift */,
-				C1ABF3352B968F2A005C6B1E /* UserData.swift */,
 				C1ABF3392B9699AA005C6B1E /* Firestore.swift */,
 			);
 			path = Components;

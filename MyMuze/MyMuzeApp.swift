@@ -25,12 +25,18 @@ struct MyMuzeApp: App {
                         ContentView()
                             .environmentObject(authManager)
                             .onChange(of: authManager.userExists) { _ in
+                                if authManager.phoneNumber != nil {
+                                    authManager.phoneNumber = nil
+                                }
                                 loadData()
                             }
                     } else {
                         SignUpView()
                             .environmentObject(authManager)
                             .onChange(of: authManager.userExists) { _ in
+                                if authManager.phoneNumber != nil {
+                                    authManager.phoneNumber = nil
+                                }
                                 loadData()
                             }
                     }
