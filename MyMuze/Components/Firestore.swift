@@ -14,7 +14,7 @@ func doesUserExistWithUID(uid: String) async -> Bool {
     let usersCollection = db.collection("users")
 
     // Perform a query to find the document with the specified UID
-    let query = usersCollection.whereField("uid", isEqualTo: uid)
+    let query = usersCollection.whereField("userId", isEqualTo: uid)
 
     do {
         let snapshot = try await query.getDocuments()
