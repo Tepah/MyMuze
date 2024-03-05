@@ -27,3 +27,20 @@ func doesUserExistWithUID(uid: String) async -> Bool {
         return false
     }
 }
+
+func addUserDataToFirestore(userData: UserData) {
+    let db = Firestore.firestore()
+    let usersCollection = db.collection("users")
+
+    // Convert UserData to dictionary
+    let userDataDictionary = userData.toDictionary()
+
+    // Add data to Firestore
+    usersCollection.document(userData.userID).setData(userDataDictionary) { error in
+        if let error = error {
+            print("Error adding document: \(error.localizedDescription)")
+        } else {
+            print("Document added successfully!")
+        }
+    }
+}

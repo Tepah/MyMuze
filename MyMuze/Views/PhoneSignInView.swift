@@ -9,6 +9,9 @@ import SwiftUI
 import Combine
 
 struct PhoneSignInView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var authManager: AuthManager
+    
     @State private var phone1: String = ""
     @State private var phone2: String = ""
     @State private var phone3: String = ""
@@ -66,6 +69,7 @@ struct PhoneSignInView: View {
                             Button("Get Text") {
                                 if (phone1 + phone2 + phone3).count == 10 {
                                     verifyPhoneSignIn("+1"+phone1+phone2+phone3)
+                                    authManager.phoneNumber = "+1"+phone1+phone2+phone3
                                     verificationModalPresented = true
                                 } else {
                                     inputError = true
@@ -85,6 +89,16 @@ struct PhoneSignInView: View {
                 }
                 .sheet(isPresented: $verificationModalPresented) {
                     VerificationModal()
+                }
+            )
+            .navigationBarItems(leading:
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "backward.end.fill")
+                            .foregroundColor(.white)
+                    }
                 }
             )
     }

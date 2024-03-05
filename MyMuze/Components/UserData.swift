@@ -19,27 +19,22 @@ struct UserData: Codable {
     var following: [String]
     var privateAcc: Bool
     
+    func toDictionary() -> [String: Any] {
+        var dictionary: [String: Any] = [
+            "profilePicture": profilePicture,
+            "username": username,
+            "email": email,
+            "name": name,
+            "userId": userID,
+            "followers": followers,
+            "following": following,
+            "privateAcc": privateAcc
+        ]
 
-    func printUserInfo() {
-        print("Username: \(username), Email: \(email), Name: \(name), UserID: \(userID), Phone: \(phone), Followers: \(followers), Following: \(following), Private: \(privateAcc)")
-    }
-}
-
-extension UserData {
-    // Convert UserData to dictionary
-    func asDictionary() throws -> [String: Any] {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        let data = try encoder.encode(self)
-        let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
         return dictionary
     }
 
-    // Initialize UserData from Firestore document data
-    init?(documentData: [String: Any]) throws {
-        let data = try JSONSerialization.data(withJSONObject: documentData, options: [])
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        self = try decoder.decode(UserData.self, from: data)
+    func printUserInfo() {
+        print("Username: \(username), Email: \(email), Name: \(name), UserID: \(userID), Phone: \(phone), Followers: \(followers), Following: \(following), Private: \(privateAcc)")
     }
 }

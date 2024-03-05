@@ -7,10 +7,12 @@
 
 import SwiftUI
 import PhotosUI
+import Combine
+import FirebaseAuth
 
 struct SignUpView: View {
     // Sign Up View used for users to sign up for new accounts
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var authManager: AuthManager
     
     @State private var avatarItem: PhotosPickerItem?
     @State private var avatarImage: Image?
@@ -18,6 +20,18 @@ struct SignUpView: View {
     @State private var username: String = ""
     @State private var email: String = ""
     @State private var inputError: Bool = false
+    @State private var phone1: String = ""
+    @State private var phone2: String = ""
+    @State private var phone3: String = ""
+    
+    private var phoneLimit3 = 4
+    
+    @FocusState private var focusedField: Field?
+    enum Field: Int, Hashable {
+       case phone1
+       case phone2
+       case phone3
+    }
     
     var body: some View {
         BackgroundView()
@@ -52,12 +66,44 @@ struct SignUpView: View {
                         .foregroundColor(Color.black)
                         .frame(width: 275)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                    if (authManager.phoneNumber == nil) {
+                        HStack {
+                            TextField("(XXX)", text: $phone1)
+                                .focused($focusedField, equals: .phone1)
+                                .foregroundColor(Color.black)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .onChange(of: phone1) { _ in
+                                    if phone1.count == 3 {
+                                        self.focusNextField($focusedField)
+                                    }
+                                }
+                            Text("-")
+                                .foregroundColor(.white)
+                            TextField("XXX", text: $phone2)
+                                .focused($focusedField, equals: .phone2)
+                                .foregroundColor(Color.black)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .onChange(of: phone2) { _ in
+                                    if phone2.count == 3 {
+                                        self.focusNextField($focusedField)
+                                    }
+                                }
+                            Text("-")
+                                .foregroundColor(.white)
+                            TextField("XXXX", text: $phone3)
+                                .focused($focusedField, equals: .phone3)
+                                .foregroundColor(Color.black)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .onReceive(Just(phone3)) { _ in limitText(phoneLimit3) }
+                        }
+                        .frame(width: 275)
+                    }
                     Rectangle()
                         .foregroundColor(Color.myMuzeAccent)
                         .frame(width:100, height:60)
                         .overlay(
                             Button("Sign up") {
-                                
+                                handleSignUp()
                             }
                             .foregroundColor(.black)
                             .fontWeight(.medium)
@@ -86,16 +132,25 @@ struct SignUpView: View {
             .navigationBarTitleFont(size: 20)
             .navigationBarTitleTextColor(.white)
             .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading:
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image(systemName: "backward.end.fill")
-                            .foregroundColor(.white)
-                    }
-                }
-            )
+    }
+    
+    func handleSignUp() {
+        var phone: String
+        if (authManager.phoneNumber == nil) {
+            phone = "+1"+phone1+phone2+phone3
+        } else {
+            phone = authManager.phoneNumber!
+        }
+        let user = Auth.auth().currentUser
+        let userData = UserData(profilePicture: "", username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
+        addUserDataToFirestore(userData: userData)
+        authManager.signUp()
+    }
+    
+    func limitText(_ upper: Int) {
+        if phone3.count > upper {
+            phone3 = String(phone3.prefix(upper))
+        }
     }
     
     var VerifySignUp: Bool {
