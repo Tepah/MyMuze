@@ -10,22 +10,29 @@ import FirebaseAuth
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            Button("Logout") {
-                do {
-                    try Auth.auth().signOut()
-                    // Set isLoggedIn to false
-                    UserDefaults.standard.set(false, forKey: "isLoggedIn")
-                } catch {
-                    print("Error signing out: \(error.localizedDescription)")
+        BackgroundView()
+            .overlay(
+                TabView {
+                    Group {
+                        HomeUI()
+                            .tabItem {
+                                Label("Home", systemImage: "house")
+                            }
+                        PostUI()
+                            .tabItem {
+                                Label("Post", systemImage: "plus.circle.fill")
+                            }
+                        ProfileUI()
+                            .tabItem {
+                                Label("Profile", systemImage: "person.crop.circle.fill")
+                            }
+                    }
+                    .toolbar(.visible, for: .tabBar)
+                    .toolbarBackground(Color.gray, for: .tabBar
+                    )
                 }
-            }
-        }
-        .padding()
+                    .accentColor(Color("Accent Color"))
+    )
     }
 }
 

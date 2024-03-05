@@ -10,8 +10,7 @@ import SwiftUI
 struct HomeUI: View {
     var body: some View {
         NavigationView {
-            Color.black
-                .ignoresSafeArea()
+            BackgroundView()
                 .overlay(
                     VStack {
                         Text("Home")

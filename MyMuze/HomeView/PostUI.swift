@@ -9,8 +9,7 @@ import SwiftUI
 
 struct PostUI: View {
     var body: some View {
-        Color.black
-            .ignoresSafeArea()
+        BackgroundView()
             .overlay(
                 VStack {
                     Text("Create a Post")

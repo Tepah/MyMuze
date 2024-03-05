@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileUI: View {
     var body: some View {
-        Color.black
-            .ignoresSafeArea()
+        BackgroundView()
             .overlay(
                 VStack {
                     Text("User Profile")
@@ -24,6 +24,15 @@ struct ProfileUI: View {
                         .frame(height: 2)
                         .background(Color.white)
                     Spacer()
+                    Button("Temporary Logout button for testing") {
+                        do {
+                            try Auth.auth().signOut()
+                            // Set isLoggedIn to false
+                            UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                        } catch {
+                            print("Error signing out: \(error.localizedDescription)")
+                        }
+                    }
                 }
             )
         }

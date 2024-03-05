@@ -125,6 +125,8 @@
 				7E1069C42B914910009EC0AA /* PostUI.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
 		C117E32A2B69806D0077FF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
