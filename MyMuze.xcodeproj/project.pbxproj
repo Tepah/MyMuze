@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E1069C52B914910009EC0AA /* PostUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1069C42B914910009EC0AA /* PostUI.swift */; };
+		7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA0092B7C07A200014F4D /* HomeUI.swift */; };
+		7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0E7782B887E08001D3C83 /* ProfileUI.swift */; };
 		C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117E32B2B6980A80077FF62 /* LoginView.swift */; };
 		C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */; };
 		C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF042B603D0D003C4FA5 /* ContentView.swift */; };
@@ -53,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E1069C42B914910009EC0AA /* PostUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUI.swift; sourceTree = "<group>"; };
+		7E8AA0092B7C07A200014F4D /* HomeUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUI.swift; sourceTree = "<group>"; };
+		7EF0E7782B887E08001D3C83 /* ProfileUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUI.swift; sourceTree = "<group>"; };
 		C117E32B2B6980A80077FF62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C121EEFF2B603D0D003C4FA5 /* MyMuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeApp.swift; sourceTree = "<group>"; };
@@ -111,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E8AA0082B7C017000014F4D /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				7E8AA0092B7C07A200014F4D /* HomeUI.swift */,
+				7EF0E7782B887E08001D3C83 /* ProfileUI.swift */,
+				7E1069C42B914910009EC0AA /* PostUI.swift */,
+			);
+			path = HomeView;
 		C117E32A2B69806D0077FF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +133,9 @@
 				C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */,
 				C1D816642B83EE3D00513C21 /* SignUpView.swift */,
 				C1ABF3372B969288005C6B1E /* PhoneSignInView.swift */,
+				7E8AA0092B7C07A200014F4D /* HomeUI.swift */,
+				7EF0E7782B887E08001D3C83 /* ProfileUI.swift */,
+				7E1069C42B914910009EC0AA /* PostUI.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +169,7 @@
 				C1C46E422B6DC54A001AADDA /* Components */,
 				C117E32A2B69806D0077FF62 /* Views */,
 				C121EF022B603D0D003C4FA5 /* MyMuzeApp.swift */,
+				7E8AA0082B7C017000014F4D /* HomeView */,
 				C121EF062B603D0E003C4FA5 /* Assets.xcassets */,
 				C121EF082B603D0E003C4FA5 /* Preview Content */,
 			);
@@ -341,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */,
+				7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */,
 				C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */,
 				C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */,
 				C121EF052B603D0D003C4FA5 /* ContentView.swift in Sources */,
@@ -353,6 +373,7 @@
 				C1D816692B84069D00513C21 /* NavigationBarExtensions.swift in Sources */,
 				C1ABF3312B9504E0005C6B1E /* Login.swift in Sources */,
 				C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */,
+				7E1069C52B914910009EC0AA /* PostUI.swift in Sources */,
 				C1C46E482B6DC946001AADDA /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
