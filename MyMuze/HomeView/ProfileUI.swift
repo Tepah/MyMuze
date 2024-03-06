@@ -9,6 +9,8 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileUI: View {
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
         BackgroundView()
             .overlay(
@@ -29,6 +31,9 @@ struct ProfileUI: View {
                             try Auth.auth().signOut()
                             // Set isLoggedIn to false
                             UserDefaults.standard.set(false, forKey: "isLoggedIn")
+                            UserDefaults.standard.set("", forKey: "uid")
+                            authManager.phoneNumber = nil
+                            authManager.userExists = nil
                         } catch {
                             print("Error signing out: \(error.localizedDescription)")
                         }

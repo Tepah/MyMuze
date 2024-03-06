@@ -34,7 +34,7 @@ struct PhoneSignInView: View {
                     HStack {
                         TextField("(XXX)", text: $phone1)
                             .focused($focusedField, equals: .phone1)
-                            .foregroundColor(Color.black)
+                            .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .onChange(of: phone1) { _ in
                                 if phone1.count == 3 {
@@ -44,8 +44,8 @@ struct PhoneSignInView: View {
                         Text("-")
                             .foregroundColor(.white)
                         TextField("XXX", text: $phone2)
+                            .keyboardType(.numberPad)
                             .focused($focusedField, equals: .phone2)
-                            .foregroundColor(Color.black)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .onChange(of: phone2) { _ in
                                 if phone2.count == 3 {
@@ -55,8 +55,8 @@ struct PhoneSignInView: View {
                         Text("-")
                             .foregroundColor(.white)
                         TextField("XXXX", text: $phone3)
+                            .keyboardType(.numberPad)
                             .focused($focusedField, equals: .phone3)
-                            .foregroundColor(Color.black)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .onReceive(Just(phone3)) { _ in limitText(phoneLimit3) }
                     }

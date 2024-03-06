@@ -20,6 +20,7 @@ struct VerificationModal: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 TextField("XXXXXXX", text: $verificationCode)
+                    .keyboardType(.numberPad)
                     .frame(width: 300)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .shadow(radius: 5)
