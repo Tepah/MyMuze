@@ -39,6 +39,10 @@ struct MyMuzeApp: App {
                                 }
                                 loadData()
                             }
+                            .onChange(of: authManager.phoneNumber) { newPhoneNumber in
+                                // Update the persisted phone number whenever it changes
+                                authManager.persistedPhoneNumber = newPhoneNumber
+                            }
                     }
                 } else {
                     Text("Loading...")

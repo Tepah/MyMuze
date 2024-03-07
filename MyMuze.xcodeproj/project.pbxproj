@@ -141,14 +141,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C1181A802B97D15C00750804 /* Modals */ = {
-			isa = PBXGroup;
-			children = (
-				C1ABF3352B968F2A005C6B1E /* UserData.swift */,
-			);
-			path = Modals;
-			sourceTree = "<group>";
-		};
 		C121EEF62B603D0C003C4FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +164,7 @@
 		C121EF012B603D0D003C4FA5 /* MyMuze */ = {
 			isa = PBXGroup;
 			children = (
-				C1181A802B97D15C00750804 /* Modals */,
+				C1FFEBA32B9A648E0001922B /* Models */,
 				C1ABF3322B9506F7005C6B1E /* MyMuze.entitlements */,
 				C1ABF32F2B9503E6005C6B1E /* Info.plist */,
 				C19893A52B92726200AB9F65 /* GoogleService-Info.plist */,
@@ -223,6 +215,14 @@
 				C1ABF3392B9699AA005C6B1E /* Firestore.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C1FFEBA32B9A648E0001922B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C1ABF3352B968F2A005C6B1E /* UserData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

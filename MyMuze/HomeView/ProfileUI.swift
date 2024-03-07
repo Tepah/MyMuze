@@ -28,12 +28,11 @@ struct ProfileUI: View {
                     Spacer()
                     Button("Temporary Logout button for testing") {
                         do {
-                            try Auth.auth().signOut()
                             // Set isLoggedIn to false
                             UserDefaults.standard.set(false, forKey: "isLoggedIn")
                             UserDefaults.standard.set("", forKey: "uid")
-                            authManager.phoneNumber = nil
                             authManager.userExists = nil
+                            try Auth.auth().signOut()
                         } catch {
                             print("Error signing out: \(error.localizedDescription)")
                         }
