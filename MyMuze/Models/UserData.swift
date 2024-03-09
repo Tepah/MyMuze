@@ -28,7 +28,7 @@ struct UserData: Codable {
             "userId": userID,
             "followers": followers,
             "following": following,
-            "privateAcc": privateAcc
+            "privateAcc": privateAcc,
         ]
 
         return dictionary
