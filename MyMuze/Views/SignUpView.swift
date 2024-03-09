@@ -57,12 +57,16 @@ struct SignUpView: View {
                         .frame(width: 275)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .shadow(radius: 5)
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     TextField("Username", text: $username)
                         .frame(width: 275)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     TextField("Email", text: $email)
                         .frame(width: 275)
+                        .keyboardType(.emailAddress)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     if (authManager.phoneNumber == nil) {
                         HStack {
                             TextField("(XXX)", text: $phone1)
