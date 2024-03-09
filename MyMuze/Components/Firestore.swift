@@ -73,9 +73,6 @@ func searchUsersWithPrefix(prefix: String, completion: @escaping ([String]) -> V
                     let combinedResults = Array(Set(usernameResults + nameResults))
                     
                     completion(combinedResults)
-                    
-                    print("Retrieved all users with the prefix: \(prefix)")
-                    print(completion)
                 }
         }
 }
