@@ -38,3 +38,6 @@ struct UserData: Codable {
         print("Username: \(username), Email: \(email), Name: \(name), UserID: \(userID), Phone: \(phone), Followers: \(followers), Following: \(following), Private: \(privateAcc)")
     }
 }
+
+
+

@@ -15,20 +15,19 @@ struct ProfileSearchView: View {
         BackgroundView()
             .overlay(
                 VStack {
+                    Text("Search")
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .bold()
+                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                        .padding(.leading, 10.0)
                     HStack {
-                        Text("Search")
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                            .padding([.leading, .bottom], 10.0)
                         TextField("Search", text: $searchText)
-                            .padding(10)
+                            .padding(5)
                             .background(Color.white)
-                            .cornerRadius(10)
-                            .frame(width: 200, height: 20)
+                            .cornerRadius(5)
+                            .frame(height: 20)
                             .foregroundColor(Color.black)
-                            .padding(10)
                             .autocapitalization(.none)
                         Button(action: {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -37,23 +36,17 @@ struct ProfileSearchView: View {
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(Color.white)
-                                .padding(10)
+                                .padding(.horizontal, 10)
                         }
                     }
-                        Divider()
-                            .overlay(.white)
-                            .frame(height: 2)
-                            .background(Color.white)
+                    .padding(.horizontal, 10)
                     List {
                         ForEach(resultUIDs, id: \.self) { uid in
-                            NavigationLink(destination: ProfileUI()) {
-                                Text(uid)
-                                    .foregroundColor(Color("Accent Color"))
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                    .fontWeight(.bold)
-                            }
+                            SearchItem(uid: uid)
+                                .listRowBackground(Color.clear)
                         }
                     }
+                    .listStyle(PlainListStyle())
                 }
                     .onChange(of: searchText) {
                         searchUsersWithPrefix(prefix: $0) { usernames in
