@@ -11,11 +11,17 @@ import FirebaseAuth
 struct ProfileUI: View {
     @EnvironmentObject var authManager: AuthManager
     
+    @State private var uid: String = ""
+    @State private var username: String = ""
+    @State private var displayName: String = ""
+    @State private var following: Int = 0
+    @State private var followers: Int = 0
+    
     var body: some View {
         BackgroundView()
             .overlay(
                 VStack {
-                    Text("User Profile")
+                    Text("@" + username)
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
@@ -38,8 +44,27 @@ struct ProfileUI: View {
                         }
                     }
                 }
+                    .onAppear {
+                        loadProfileData()
+                    }
             )
         }
+    
+    func loadProfileData() {
+        Task {
+            do {
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    username = await getUsername(uid: uid)
+                }
+            } catch {
+                    print("Error loading data:", error.localizedDescription)
+            }
+            
+        }
+        
+    }
 }
 
 #Preview {
