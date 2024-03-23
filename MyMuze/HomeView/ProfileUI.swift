@@ -18,7 +18,7 @@ struct ProfileUI: View {
         BackgroundView()
             .overlay(
                 VStack (spacing: 15) {
-                    Text("@" + (currentUser?.username ?? "username"))
+                    Text("Profile")
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
@@ -39,6 +39,12 @@ struct ProfileUI: View {
                         .frame(maxWidth: .infinity)
                         .bold()
                         .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                    Text("@" + (currentUser?.username ?? "username"))
+                        .foregroundColor(Color.gray)
+                        .padding(.top, -10.0)
+                        .frame(maxWidth: .infinity)
+//                        .bold()
+                        .font(.title3)
                     Divider()
                         .overlay(.gray)
                         .frame(height: 0.5)
