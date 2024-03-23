@@ -48,8 +48,11 @@ func addUserDataToFirestore(userData: UserData) {
 func getUser(uid: String) async throws -> UserData {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(uid)
-
+    
+    // Retrieves document with matching uid
     let document = try await userRef.getDocument()
+    
+    // Retrieves user data and casts to userData object
     let profilePic = document.get("profilePicture") as! String
     let username = document.get("username") as! String
     let name = document.get("name") as! String
