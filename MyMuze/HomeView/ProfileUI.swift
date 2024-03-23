@@ -12,16 +12,13 @@ struct ProfileUI: View {
     @EnvironmentObject var authManager: AuthManager
     
     @State private var uid: String = ""
-    @State private var username: String = ""
-    @State private var displayName: String = ""
-    @State private var following: Int = 0
-    @State private var followers: Int = 0
+    @State private var currentUser: UserData? = nil
     
     var body: some View {
         BackgroundView()
             .overlay(
                 VStack {
-                    Text("@" + username)
+                    Text("@" + (currentUser?.username ?? "Current User"))
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
@@ -56,7 +53,7 @@ struct ProfileUI: View {
                 let user = Auth.auth().currentUser
                 if let user = user {
                     let uid = user.uid
-                    username = await getUsername(uid: uid)
+                    currentUser = try await getCurrentUserInfo(uid: uid)
                 }
             } catch {
                     print("Error loading data:", error.localizedDescription)

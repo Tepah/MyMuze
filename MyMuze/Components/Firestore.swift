@@ -45,22 +45,17 @@ func addUserDataToFirestore(userData: UserData) {
     }
 }
 
-func getUsername(uid: String) async -> String {
+func getUser(uid: String) async throws -> UserData {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(uid)
 
-    do {
-        let document = try await userRef.getDocument()
-        if document.exists {
-            let username = document.get("username")
-            return username as! String
-        } else {
-            print("Document does not exist")
-        }
-    } catch {
-        print("Error getting document: \(error)")
-    }
-    return "Error retrieving username"
+    let document = try await userRef.getDocument()
+    let profilePic = document.get("profilePicture") as! String
+    let username = document.get("username") as! String
+    let name = document.get("name") as! String
+    let email = document.get("email") as! String
+    let privateAcc = document.get("privateAcc") as! Bool
+    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
 }
 
 
