@@ -21,7 +21,7 @@ struct SearchItem: View {
     }
     
     // Temporary profile info
-    private let profileInfo = UserData(profilePicture: "https://kpopping.com/documents/a4/0/231009-le3ay-Instagram-update-with-DPR-Ian-documents-2.jpeg?v=c7f9c", username: "username", email: "email", name: "name", userID: "userID", phone: "phone", followers: [], following: [], privateAcc: false)
+    private let profileInfo = UserData(profilePicture: "", username: "username", email: "email", name: "name", userID: "userID", phone: "phone", followers: [], following: [], privateAcc: false)
     
     var body: some View {
         NavigationLink(destination: ProfileUI()) {
@@ -29,14 +29,15 @@ struct SearchItem: View {
                 if profileInfo.profilePicture == "" {
                     Image(systemName: "person.fill")
                         .resizable()
-                        .frame(width: 70, height: 70)
+                        .frame(width: 40, height: 40)
+                        .padding(10)
                         .background(Color.myMuzeBlack)
                         .clipShape(Circle())
                 } else {
                     URLImage(URL(string: profileInfo.profilePicture)!) { image in
                         image
                             .resizable()
-                            .frame(width: 70, height: 70)
+                            .frame(width: 55, height: 55)
                             .clipShape(Circle())
                             .padding(5)
                     }
