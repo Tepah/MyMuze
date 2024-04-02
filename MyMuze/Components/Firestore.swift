@@ -44,3 +44,21 @@ func addUserDataToFirestore(userData: UserData) {
         }
     }
 }
+
+func getUser(uid: String) async throws -> UserData {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(uid)
+    
+    // Retrieves document with matching uid
+    let document = try await userRef.getDocument()
+    
+    // Retrieves user data and casts to userData object
+    let profilePic = document.get("profilePicture") as! String
+    let username = document.get("username") as! String
+    let name = document.get("name") as! String
+    let email = document.get("email") as! String
+    let privateAcc = document.get("privateAcc") as! Bool
+    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
+}
+
+
