@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileSearchView: View {
     @State private var searchText = ""
     @State private var resultUIDs: [String] = []
+    @State private var users: [UserData] = []
     
     var body: some View {
         BackgroundView()
@@ -40,18 +41,33 @@ struct ProfileSearchView: View {
                         }
                     }
                     .padding(.horizontal, 10)
-                    List {
-                        ForEach(resultUIDs, id: \.self) { uid in
-                            SearchItem(uid: uid)
-                                .listRowBackground(Color.clear)
-                        }
+                    List(users, id: \.self.userID) { user in
+                        SearchItem(profileInfo: user)
                     }
                     .listStyle(PlainListStyle())
+                    .task {
+                        users = []
+                        for uid in resultUIDs {
+                            do {
+                                users.append(try await getUser(uid: uid))
+                            } catch {
+                                print("Error fetching user data")
+                            }
+                        }
+                    }
                 }
                     .onChange(of: searchText) {
-                        searchUsersWithPrefix(prefix: $0) { usernames in
-                            resultUIDs = usernames
+                        if searchText == "" {
+                            resultUIDs = []
+                            return
                         }
+                        else {
+                            searchUsersWithPrefix(prefix: searchText) { usernames in
+                                resultUIDs = usernames
+                            }
+                        }
+                        print("Search Text: \(searchText)")
+                        print(resultUIDs)
                     }
             )
     }

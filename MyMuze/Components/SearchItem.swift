@@ -14,19 +14,18 @@ import URLImage
 ///     - uid: The user ID number of the user
 /// - Returns: A view that displays the user ID
 struct SearchItem: View {
-    let uid: String
+    let profileInfo: UserData
     
-    init(uid: String) {
-        self.uid = uid
+    init(profileInfo: UserData) {
+        self.profileInfo = profileInfo
     }
     
     // Temporary profile info
-    private let profileInfo = UserData(profilePicture: "", username: "username", email: "email", name: "name", userID: "userID", phone: "phone", followers: [], following: [], privateAcc: false)
     
     var body: some View {
         NavigationLink(destination: ProfileUI()) {
             HStack {
-                if profileInfo.profilePicture == "" {
+                if self.profileInfo.profilePicture == "" {
                     Image(systemName: "person.fill")
                         .resizable()
                         .frame(width: 40, height: 40)
@@ -34,7 +33,7 @@ struct SearchItem: View {
                         .background(Color.myMuzeBlack)
                         .clipShape(Circle())
                 } else {
-                    URLImage(URL(string: profileInfo.profilePicture)!) { image in
+                    URLImage(URL(string: self.profileInfo.profilePicture)!) { image in
                         image
                             .resizable()
                             .frame(width: 55, height: 55)
@@ -43,10 +42,10 @@ struct SearchItem: View {
                     }
                 }
                 VStack(alignment: .leading) {
-                    Text("@"+profileInfo.username)
+                    Text("@"+self.profileInfo.username)
                         .foregroundColor(Color.myMuzeAccent)
                         .bold()
-                    Text(profileInfo.name)
+                    Text(self.profileInfo.name)
                         .foregroundColor(Color.myMuzeWhite)
                         .font(.subheadline)
                     Spacer()
