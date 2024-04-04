@@ -28,7 +28,7 @@ struct UserData: Codable {
             "userId": userID,
             "followers": followers,
             "following": following,
-            "privateAcc": privateAcc
+            "privateAcc": privateAcc,
         ]
 
         return dictionary
@@ -38,3 +38,6 @@ struct UserData: Codable {
         print("Username: \(username), Email: \(email), Name: \(name), UserID: \(userID), Phone: \(phone), Followers: \(followers), Following: \(following), Private: \(privateAcc)")
     }
 }
+
+
+
