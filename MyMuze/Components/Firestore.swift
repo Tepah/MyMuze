@@ -61,4 +61,34 @@ func getUser(uid: String) async throws -> UserData {
     return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
 }
 
-
+func searchUsersWithPrefix(prefix: String, completion: @escaping ([String]) -> Void) {
+    let db = Firestore.firestore()
+    // Grabs every user that starts with the prefix
+    let usersCollection = db.collection("users")
+        .whereField("username", isGreaterThanOrEqualTo: prefix)
+        .whereField("username", isLessThan: prefix + "\u{f8ff}")
+        .getDocuments { (usernameSnapshot, error) in
+            if let error = error {
+                print("Error searching for users: ", error.localizedDescription)
+                completion([])
+                return
+            }
+            
+            db.collection("users")
+                .whereField("name", isGreaterThanOrEqualTo: prefix)
+                .whereField("name", isLessThan: prefix + "\u{f8ff}")
+                .getDocuments { (nameSnapshot, error) in
+                    if let error = error {
+                        print("No user found with that name prefix: ", error.localizedDescription)
+                        completion([])
+                        return
+                    }
+                    
+                    let usernameResults = usernameSnapshot?.documents.map { $0.documentID } ?? []
+                    let nameResults = nameSnapshot?.documents.map { $0.documentID } ?? []
+                    let combinedResults = Array(Set(usernameResults + nameResults))
+                    
+                    completion(combinedResults)
+                }
+        }
+}

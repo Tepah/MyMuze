@@ -13,17 +13,26 @@ struct HomeUI: View {
             BackgroundView()
                 .overlay(
                     VStack {
-                        Text("Home")
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .bold()
-                            .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                            .padding([.leading, .bottom], 10.0)
-                        Divider()
-                            .overlay(.white)
-                            .frame(height: 2)
-                            .background(Color.white)
-                        
+                        HStack {
+                            Text("Home")
+                                .foregroundColor(Color.white)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .bold()
+                                .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                                .padding([.leading, .bottom], 10.0)
+                            Spacer()
+                            NavigationLink(destination: ProfileSearchView()) {
+                                Image(systemName: "magnifyingglass")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(Color.white)
+                                    .padding(10)
+                            }
+                        }
+                            Divider()
+                                .overlay(.white)
+                                .frame(height: 2)
+                                .background(Color.white)
                         ZStack {
                             VStack{
                                 NavigationLink(destination: ProfileUI()) {
