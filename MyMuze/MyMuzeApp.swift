@@ -71,7 +71,7 @@ struct MyMuzeApp: App {
                 let user = Auth.auth().currentUser
                 if let user = user {
                     let uid = user.uid
-                    let userExists = await doesUserExistWithUID(uid: uid)
+                    userExists = await doesUserExistWithUID(uid: uid)
                     authManager.userExists = userExists
                 }
             } catch {

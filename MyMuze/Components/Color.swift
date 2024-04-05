@@ -25,4 +25,5 @@ extension Color {
     static let myMuzeBlack = Color(hex: 0x1E1E1E)
     static let myMuzeAccent = Color(hex: 0x8364FF)
     static let myMuzeWhite = Color(hex: 0xFFFFFF)
+    static let myMuzeGrey = Color(hex: 0x494949)
 }

@@ -61,4 +61,27 @@ func getUser(uid: String) async throws -> UserData {
     return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
 }
 
+func searchUsersWithPrefix(prefix: String) async throws -> [String] {
+    let db = Firestore.firestore()
 
+    // Perform the first query asynchronously
+    let usernameQuerySnapshot = try await db.collection("users")
+        .whereField("username", isGreaterThanOrEqualTo: prefix)
+        .whereField("username", isLessThan: prefix + "\u{f8ff}")
+        .getDocuments()
+
+    // Perform the second query asynchronously
+    let nameQuerySnapshot = try await db.collection("users")
+        .whereField("name", isGreaterThanOrEqualTo: prefix)
+        .whereField("name", isLessThan: prefix + "\u{f8ff}")
+        .getDocuments()
+
+    // Extract the document IDs from the query snapshots
+    let usernameResults = usernameQuerySnapshot.documents.map { $0.documentID }
+    let nameResults = nameQuerySnapshot.documents.map { $0.documentID }
+
+    // Combine and remove duplicates from the results
+    let combinedResults = Array(Set(usernameResults + nameResults))
+
+    return combinedResults
+}
