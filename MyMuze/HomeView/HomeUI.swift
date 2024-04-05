@@ -28,6 +28,13 @@ struct HomeUI: View {
                                     .foregroundColor(Color.white)
                                     .padding(10)
                             }
+                            NavigationLink(destination: NotificationsView()) {
+                                Image(systemName: "bell")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(Color.white)
+                                    .padding(10)
+                            }
                         }
                             Divider()
                                 .overlay(.white)
