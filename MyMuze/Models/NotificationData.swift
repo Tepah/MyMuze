@@ -9,17 +9,21 @@ import Foundation
 
 struct Notification: Codable {
     // Notification data
-    var message: String
     var type: String
     var timestamp: String
     var uid: String
+    var message: String?
+    var follower: String?
+    var postID: String?
     
     func toDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [
-            "message" : message,
             "type" : type,
             "timestamp" : timestamp,
-            "uid" : uid
+            "uid" : uid,
+            "message" : message ?? "",
+            "follower" : follower ?? "",
+            "postID" : postID ?? ""
         ]
 
         return dictionary
