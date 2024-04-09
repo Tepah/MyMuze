@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileUI: View {
     @EnvironmentObject var authManager: AuthManager
