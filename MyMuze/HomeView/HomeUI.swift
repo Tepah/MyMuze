@@ -42,12 +42,28 @@ struct HomeUI: View {
                                             .foregroundColor(Color.white)
                                             .padding(10)
                                     }
-                                    NavigationLink(destination: NotificationsView()) {
-                                        Image(systemName: "bell")
-                                            .resizable()
-                                            .frame(width: 20, height: 20)
-                                            .foregroundColor(Color.white)
-                                            .padding(10)
+                                    if notifications.count > 0 {
+                                        NavigationLink(destination: NotificationsView()) {
+                                            Image(systemName: "bell.fill")
+                                                .resizable()
+                                                .frame(width: 20, height: 20)
+                                                .foregroundColor(Color.white)
+                                                .padding(10)
+                                                .overlay(
+                                                    Circle()
+                                                        .foregroundColor(.red)
+                                                        .frame(width: 10, height: 10)
+                                                        .offset(x: 10, y: -10)
+                                                )
+                                        }
+                                    } else {
+                                        NavigationLink(destination: NotificationsView()) {
+                                            Image(systemName: "bell")
+                                                .resizable()
+                                                .frame(width: 20, height: 20)
+                                                .foregroundColor(Color.white)
+                                                .padding(10)
+                                        }
                                     }
                                 }
                                 Divider()
@@ -123,7 +139,8 @@ struct HomeUI: View {
     func loadData() {
         Task {
             do {
-                print(try await getNotificationsForUser(uid:uid))
+                notifications = try await getNotificationsForUser(uid:uid);
+                loading = false;
             } catch {
                 print("Error loading notifications")
             }
