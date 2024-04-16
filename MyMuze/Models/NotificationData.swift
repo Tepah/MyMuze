@@ -9,6 +9,7 @@ import Foundation
 
 struct Notification: Codable {
     // Notification data
+    var notificationID: String?
     var type: String
     var timestamp: String
     var uid: String

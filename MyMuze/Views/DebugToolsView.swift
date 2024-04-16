@@ -44,7 +44,7 @@ struct DebugToolsView: View {
                     // Make a follower notification (No actual new follower)
                     let uid = Auth.auth().currentUser?.uid ?? "temp"
                     print(uid)
-                    let notification = Notification(type: "follower", timestamp: Date().description, uid: uid, user: "temp")
+                    let notification = Notification(type: "follow", timestamp: Date().description, uid: uid, user: "temp")
                     
                     createNotification(notification: notification)
                 }) {
@@ -92,7 +92,7 @@ struct DebugToolsView: View {
                 Button(action: {
                     // Make a comment Notification (On a fake post)
                     let uid = Auth.auth().currentUser?.uid ?? "temp"
-                    let notification = Notification(type: "like", timestamp: Data().description, uid: uid, user: "temp")
+                    let notification = Notification(type: "like", timestamp: Data().description, uid: uid, user: "temp", postID: "fakeID")
                     
                     createNotification(notification: notification)
                 }) {

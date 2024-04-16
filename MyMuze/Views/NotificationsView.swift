@@ -10,12 +10,13 @@ import FirebaseAuth
 import URLImage
 
 struct NotificationsView: View {
+    let notifications: [Notification]
     let user = Auth.auth().currentUser
-    let tempNotifications = [Notification(type: "follow", timestamp: "Timestamp", uid: "", user: "pete"),
-                             Notification(type: "like", timestamp: "PostID", uid: "like", message: "Timestamp", user: "somebody", postID: ""),
-                             Notification(type: "comment", timestamp: "Time", uid: "uid", message: "i luv that song so much it's so great", user: "Peter", postID: "UID"),
-                             Notification(type: "confirm", timestamp: "Timestamp", uid: "", user: "pete"),
-                             Notification(type: "request", timestamp: "Timestamp", uid: "", user: "pete"),]
+    
+    init (notifications: [Notification]) {
+        self.notifications = notifications;
+        print(self.notifications.count);
+    }
     
     var body: some View {
         BackgroundView()
@@ -23,9 +24,9 @@ struct NotificationsView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        if tempNotifications.count > 0 {
+                        if notifications.count > 0 {
                             Button(action: {
-                                // Clear
+                                handleClearAll()
                             }) {
                                 Rectangle()
                                     .frame(width: 80, height: 30)
@@ -39,8 +40,8 @@ struct NotificationsView: View {
                             .padding(15)
                         }
                     }
-                    List(0..<5) {i in
-                        NotificationRow(notification: tempNotifications[i])
+                    List(notifications, id: \.self.notificationID) { notification in
+                        NotificationRow(notification: notification)
                             .listRowBackground(Color.clear)
                     }
                     .listStyle(PlainListStyle())
@@ -195,7 +196,7 @@ struct NotificationsView: View {
                                 .foregroundColor(Color.myMuzeWhite)
                         )
                         .onTapGesture {
-                            NotificationsView().handleAcceptRequest(notification: notification)
+                            // Handle Accepting request
                         }
                     Rectangle()
                         .frame(width: 80, height: 30)
@@ -206,7 +207,7 @@ struct NotificationsView: View {
                                 .foregroundColor(Color.myMuzeWhite)
                         )
                         .onTapGesture {
-                            NotificationsView().handleDelete(notification: notification)
+                            // Handle Declining request
                         }
                 }
                 .frame(width: 50, height: 50)
@@ -278,6 +279,7 @@ struct NotificationsView: View {
         
         init(notification: Notification) {
             self.user = notification.user!
+            print(self.user)
         }
         var body: some View {
             HStack {
@@ -299,22 +301,6 @@ struct NotificationsView: View {
         }
     }
     
-    /// Handles the accept request button in the newRequest notification
-    /// - Parameters:
-    ///    - notification: The notification data needing user and uid that user is allowed to follow
-    ///    - Returns: A view that displays a new follower Notification
-    func handleAcceptRequest(notification: Notification) {
-        
-    }
-    
-    /// Handles the delete button in the newRequest notification
-    /// - Parameters:
-    ///   - notification: The notification data that needs to be deleted from the file
-    ///
-    func handleDelete(notification: Notification) {
-        
-    }
-    
     /// Handles the clear all button in the NotificationsView
     func handleClearAll() {
         
@@ -326,5 +312,5 @@ struct NotificationsView: View {
 }
 
 #Preview {
-    NotificationsView()
+    NotificationsView(notifications: [Notification]())
 }

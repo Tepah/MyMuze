@@ -23,9 +23,6 @@ struct HomeUI: View {
                                 ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                     .scaleEffect(2)
-                                    .onAppear() {
-                                        loadData()
-                                    }
                             } else {
                                 HStack {
                                     Text("Home")
@@ -43,7 +40,7 @@ struct HomeUI: View {
                                             .padding(10)
                                     }
                                     if notifications.count > 0 {
-                                        NavigationLink(destination: NotificationsView()) {
+                                        NavigationLink(destination: NotificationsView(notifications: notifications)) {
                                             Image(systemName: "bell.fill")
                                                 .resizable()
                                                 .frame(width: 20, height: 20)
@@ -57,7 +54,7 @@ struct HomeUI: View {
                                                 )
                                         }
                                     } else {
-                                        NavigationLink(destination: NotificationsView()) {
+                                        NavigationLink(destination: NotificationsView(notifications: notifications)) {
                                             Image(systemName: "bell")
                                                 .resizable()
                                                 .frame(width: 20, height: 20)
@@ -133,6 +130,10 @@ struct HomeUI: View {
                         }
                     }
                 )
+                .onAppear() {
+                    loading = true;
+                    loadData();
+                }
         }
     }
     
@@ -147,6 +148,7 @@ struct HomeUI: View {
         }
     }
 }
+
 #Preview {
     HomeUI()
 }
