@@ -10,7 +10,7 @@ import FirebaseAuth
 import URLImage
 
 struct NotificationsView: View {
-    let notifications: [Notification]
+    @State var notifications: [Notification]
     let user = Auth.auth().currentUser
     
     init (notifications: [Notification]) {
@@ -43,6 +43,15 @@ struct NotificationsView: View {
                     List(notifications, id: \.self.notificationID) { notification in
                         NotificationRow(notification: notification)
                             .listRowBackground(Color.clear)
+                            .padding(5)
+                            .gesture(
+                                DragGesture()
+                                    .onEnded { gesture in
+                                        if gesture.translation.width < -100 || gesture.translation.width > 100 {
+                                            handleNotificationSwipe(notification: notification)
+                                        }
+                                    }
+                            )
                     }
                     .listStyle(PlainListStyle())
                     Spacer()
@@ -50,6 +59,11 @@ struct NotificationsView: View {
                 .navigationBarTitle("Notifications")
                 .navigationBarTitleTextColor(.white)
             )
+    }
+    
+    func handleNotificationSwipe(notification: Notification) {
+        deleteNotification(notification: notification.notificationID!);
+        notifications.removeAll { $0.notificationID == notification.notificationID }
     }
     
     struct NotificationRow: View {
@@ -303,7 +317,9 @@ struct NotificationsView: View {
     
     /// Handles the clear all button in the NotificationsView
     func handleClearAll() {
-        
+        while notifications.count > 0 {
+            handleNotificationSwipe(notification: notifications[0])
+        }
     }
                 
     func loadProfileData() {

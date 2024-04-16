@@ -124,3 +124,16 @@ func getNotificationsForUser(uid: String) async throws -> [Notification] {
 
     return notifications
 }
+
+func deleteNotification(notification: String) {
+    let db = Firestore.firestore()
+    let notificationRef = db.collection("notifications").document(notification)
+    
+    notificationRef.delete { error in
+        if let error = error {
+            print("Error deleting notification: \(error.localizedDescription)")
+        } else {
+            print("Notification deleted successfully!")
+        }
+    }
+}
