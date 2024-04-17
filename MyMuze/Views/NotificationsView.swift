@@ -41,7 +41,7 @@ struct NotificationsView: View {
                         }
                     }
                     List(notifications, id: \.self.notificationID) { notification in
-                        NotificationRow(notification: notification)
+                        NotificationRow(notifications: $notifications, notification: notification)
                             .listRowBackground(Color.clear)
                             .padding(5)
                             .gesture(
@@ -67,11 +67,8 @@ struct NotificationsView: View {
     }
     
     struct NotificationRow: View {
+        @Binding var notifications: [Notification]
         let notification: Notification
-        
-        init (notification: Notification) {
-            self.notification = notification
-        }
         
         var body: some View {
             HStack {
@@ -84,7 +81,9 @@ struct NotificationsView: View {
                 } else if notification.type == "confirm" {
                     newConfirm(notification: notification)
                 } else if notification.type == "request" {
-                    newRequest(notification: notification)
+                    newRequest(notifications: $notifications, notification: notification)
+                } else if notification.type == "accept" {
+                    newAccept(notification: notification)
                 }
                 Spacer()
             }
@@ -97,13 +96,7 @@ struct NotificationsView: View {
     ///     - notification: The notification data needing user and Post
     /// - Returns: A view that displays a new Like Notification
     struct newLike: View {
-        let user: String
-        let post: String
-        
-        init(notification: Notification) {
-            self.user = notification.user!
-            self.post = notification.postID!
-        }
+        let notification: Notification
         
         var body: some View {
             HStack {
@@ -115,7 +108,7 @@ struct NotificationsView: View {
                     .clipShape(Circle())
                 Spacer()
                 VStack {
-                    Text(user)
+                    Text(notification.user ?? "nil")
                         .foregroundColor(Color.myMuzeAccent) +
                     Text(" liked your post")
                         .foregroundColor(Color.myMuzeWhite)
@@ -146,11 +139,7 @@ struct NotificationsView: View {
     ///     - notification: The notification data needing user
     /// - Returns: A view that displays a new Confirmed following
     struct newConfirm: View {
-        let user: String
-        
-        init(notification: Notification) {
-            self.user = notification.user!
-        }
+        let notification: Notification
         
         var body: some View {
             HStack {
@@ -162,7 +151,7 @@ struct NotificationsView: View {
                     .clipShape(Circle())
                 Spacer()
                 VStack {
-                    Text(user)
+                    Text(notification.user ?? "nil")
                         .foregroundColor(Color.myMuzeAccent) +
                     Text(" accepted your follow.")
                         .foregroundColor(Color.myMuzeWhite)
@@ -178,11 +167,8 @@ struct NotificationsView: View {
     ///     - notification: The notification data needing user
     /// - Returns: A view that displays a new request following
     struct newRequest: View {
+        @Binding var notifications: [Notification]
         let notification: Notification
-        
-        init(notification: Notification) {
-            self.notification = notification
-        }
         
         var body: some View {
             HStack {
@@ -194,7 +180,7 @@ struct NotificationsView: View {
                     .clipShape(Circle())
                 Spacer()
                 VStack {
-                    Text(notification.user!)
+                    Text(notification.user ?? "nil")
                         .foregroundColor(Color.myMuzeAccent) +
                     Text(" wants to follow you.")
                         .foregroundColor(Color.myMuzeWhite)
@@ -211,6 +197,7 @@ struct NotificationsView: View {
                         )
                         .onTapGesture {
                             // Handle Accepting request
+                            handleAccept()
                         }
                     Rectangle()
                         .frame(width: 80, height: 30)
@@ -222,10 +209,23 @@ struct NotificationsView: View {
                         )
                         .onTapGesture {
                             // Handle Declining request
+                            handleDelete()
                         }
                 }
                 .frame(width: 50, height: 50)
             }
+        }
+        
+        func handleAccept() {
+            let newNotification = Notification(type: "accept", timestamp: Date().description, uid: notification.receivingUID, receivingUID: notification.uid, user: notification.currentUser);
+            createNotification(notification: newNotification);
+            handleDelete();
+            // TODO: add follower to account
+        }
+        
+        func handleDelete() {
+            deleteNotification(notification: notification.notificationID!);
+            notifications.removeAll { $0.notificationID == notification.notificationID };
         }
     }
     
@@ -235,15 +235,7 @@ struct NotificationsView: View {
     ///     - notification: The notification data needing user, postID, and message
     /// - Returns: A view that displays a new comment Notification
     struct newComment: View {
-        let user: String
-        let postID: String
-        let message: String
-        
-        init(notification: Notification) {
-            self.user = notification.user!
-            self.postID = notification.postID!
-            self.message = notification.message!
-        }
+        let notification: Notification
         
         var body: some View {
             HStack {
@@ -255,11 +247,11 @@ struct NotificationsView: View {
                     .clipShape(Circle())
                 Spacer()
                 VStack {
-                    Text(user)
+                    Text(notification.user ?? "nil")
                         .foregroundColor(Color.myMuzeAccent) +
                     Text(" commented: ")
                         .foregroundColor(Color.myMuzeWhite)
-                    Text(message)
+                    Text(notification.message ?? "nil")
                         .foregroundColor(Color.myMuzeWhite)
                         .lineLimit(1)
                         .font(.system(size: 12))
@@ -289,12 +281,8 @@ struct NotificationsView: View {
     ///     - notification: The notification data needing user
     /// - Returns: A view that displays a new follower Notification
     struct newFollower: View {
-        let user: String
+        let notification: Notification
         
-        init(notification: Notification) {
-            self.user = notification.user!
-            print(self.user)
-        }
         var body: some View {
             HStack {
                 Image(systemName: "person.fill")
@@ -305,9 +293,37 @@ struct NotificationsView: View {
                     .clipShape(Circle())
                 Spacer()
                 VStack {
-                    Text(user)
+                    Text(notification.user ?? "nil")
                         .foregroundColor(Color.myMuzeAccent) +
                     Text(" started following you")
+                        .foregroundColor(Color.myMuzeWhite)
+                }
+                Spacer()
+            }
+        }
+    }
+    
+    /// Creates the newFollower notification used in NotificationRows to display a new follower notification.
+    ///
+    /// - Parameters:
+    ///     - notification: The notification data needing user
+    /// - Returns: A view that displays a new follower Notification
+    struct newAccept: View {
+        let notification: Notification
+        
+        var body: some View {
+            HStack {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .padding(10)
+                    .background(Color.myMuzeBlack)
+                    .clipShape(Circle())
+                Spacer()
+                VStack {
+                    Text(notification.user ?? "nil")
+                        .foregroundColor(Color.myMuzeAccent) +
+                    Text(" accepted your follow")
                         .foregroundColor(Color.myMuzeWhite)
                 }
                 Spacer()
@@ -321,10 +337,8 @@ struct NotificationsView: View {
             handleNotificationSwipe(notification: notifications[0])
         }
     }
-                
-    func loadProfileData() {
-        
-    }
+    
+    
 }
 
 #Preview {

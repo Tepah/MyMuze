@@ -116,10 +116,12 @@ func getNotificationsForUser(uid: String) async throws -> [Notification] {
         let type = document.get("type") as! String
         let timestamp = document.get("timestamp") as! String
         let uid = document.get("uid") as! String
+        let receivingUID = document.get("receivingUID") as! String
         let message = document.get("message") as? String
         let user = document.get("user") as? String
         let postID = document.get("postID") as? String
-        return Notification(notificationID: document.documentID,type: type, timestamp: timestamp, uid: uid, message: message, user: user, postID: postID)
+        let currentUser = document.get("currentUser") as? String
+        return Notification(notificationID: document.documentID,type: type, timestamp: timestamp, uid: uid, receivingUID: receivingUID, message: message, user: user, currentUser: currentUser, postID: postID)
     }
 
     return notifications

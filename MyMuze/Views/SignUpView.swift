@@ -136,17 +136,17 @@ struct SignUpView: View {
     }
     
     func handleSignUp() {
-        print(authManager.phoneNumber ?? "No Phone Number")
+        print(authManager.phoneNumber)
         var phone: String
-        if (authManager.phoneNumber == nil) {
+        if (authManager.phoneNumber == "") {
             phone = "+1"+phone1+phone2+phone3
         } else {
-            phone = authManager.phoneNumber!
+            phone = authManager.phoneNumber
         }
         let user = Auth.auth().currentUser
         let userData = UserData(profilePicture: "", username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
-        authManager.phoneNumber = nil
-        authManager.persistedPhoneNumber = nil
+        authManager.phoneNumber = ""
+        authManager.persistedPhoneNumber = ""
         addUserDataToFirestore(userData: userData)
         authManager.signUp()
     }

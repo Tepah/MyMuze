@@ -13,8 +13,10 @@ struct Notification: Codable {
     var type: String
     var timestamp: String
     var uid: String
+    var receivingUID: String
     var message: String?
     var user: String?
+    var currentUser: String?
     var postID: String?
     
     func toDictionary() -> [String: Any] {
@@ -22,6 +24,7 @@ struct Notification: Codable {
         dictionary["type"] = type
         dictionary["timestamp"] = timestamp
         dictionary["uid"] = uid
+        dictionary["receivingUID"] = receivingUID
         
         if let message = message {
             dictionary["message"] = message
@@ -31,6 +34,9 @@ struct Notification: Codable {
         }
         if let postID = postID {
             dictionary["postID"] = postID
+        }
+        if let currentUser = currentUser {
+            dictionary["currentUser"] = currentUser
         }
 
         return dictionary
