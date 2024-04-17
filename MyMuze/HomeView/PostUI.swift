@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PostUI: View {
+    @State private var searchQuery = ""
+   
     var body: some View {
         BackgroundView()
             .overlay(
@@ -23,17 +25,29 @@ struct PostUI: View {
                         .frame(height: 2)
                         .background(Color.white)
                     Spacer()
+                    TextField("Search for a song or artist", text: $searchQuery)
+                        .padding(5.0)
+                        .background(Color.white)
+                        .cornerRadius(5)
+                        .frame(height: 20)
+                        .foregroundColor(Color.black)
+                        .autocapitalization(.none)
+                        .onSubmit {
+                            print(searchQuery)
+                            searchSpotify(searchInput: searchQuery)
+                        }
+                    Spacer()
                 }
             )
     }
     
-    func searchSpotify() {
+    func searchSpotify(searchInput: String) {
         let spotifyClient = SpotifyAPIClient()
         spotifyClient.getAccessToken { accessToken in
             if let token = accessToken {
                 print("Access Token: \(token)")
                 // Use the access token to make further requests to Spotify API
-                spotifyClient.searchTracks(query: "Shawn Mendes", accessToken: token) { tracks in
+                spotifyClient.searchTracks(query: searchInput, accessToken: token) { tracks in
                     if let tracks = tracks {
                         print("Found Tracks: \(tracks)")
                     } else {
