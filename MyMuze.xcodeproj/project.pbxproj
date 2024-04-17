@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		409025FA2F708E9499812EF2 /* Pods_MyMuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8831AAD7CDB1966740DA2DAF /* Pods_MyMuze.framework */; };
+		6BB44BC004B4299EF6CDEA74 /* Pods_MyMuzeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2247BCD797A33B0D1A9CF158 /* Pods_MyMuzeTests.framework */; };
 		7E1069C52B914910009EC0AA /* PostUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1069C42B914910009EC0AA /* PostUI.swift */; };
+		7E7035242BC5FBA500C5B365 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7035232BC5FBA500C5B365 /* SpotifyiOS */; };
 		7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA0092B7C07A200014F4D /* HomeUI.swift */; };
+		7EBA74552BCF3BCB00E4536A /* SpotifyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA74542BCF3BCB00E4536A /* SpotifyAPIClient.swift */; };
 		7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF0E7782B887E08001D3C83 /* ProfileUI.swift */; };
 		C1145BC42B97A7AF00F36020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1145BC32B97A7AF00F36020 /* AppDelegate.swift */; };
 		C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117E32B2B6980A80077FF62 /* LoginView.swift */; };
@@ -40,6 +44,7 @@
 		C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */; };
 		C1D816652B83EE3D00513C21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D816642B83EE3D00513C21 /* SignUpView.swift */; };
 		C1D816692B84069D00513C21 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D816682B84069D00513C21 /* NavigationBarExtensions.swift */; };
+		C8767CF6A974C5D647564DBF /* Pods_MyMuze_MyMuzeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA52254235F239D862FFB625 /* Pods_MyMuze_MyMuzeUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +65,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2247BCD797A33B0D1A9CF158 /* Pods_MyMuzeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMuzeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		324756D69109FF63B022374E /* Pods-MyMuze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuze.debug.xcconfig"; path = "Target Support Files/Pods-MyMuze/Pods-MyMuze.debug.xcconfig"; sourceTree = "<group>"; };
+		359CA5E01237023E553DA53A /* Pods-MyMuzeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuzeTests.debug.xcconfig"; path = "Target Support Files/Pods-MyMuzeTests/Pods-MyMuzeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		38AE868E2456454DF1A4A933 /* Pods-MyMuze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuze.release.xcconfig"; path = "Target Support Files/Pods-MyMuze/Pods-MyMuze.release.xcconfig"; sourceTree = "<group>"; };
+		7A13077BC9AAA5BF295A9B06 /* Pods-MyMuze-MyMuzeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuze-MyMuzeUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyMuze-MyMuzeUITests/Pods-MyMuze-MyMuzeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E1069C42B914910009EC0AA /* PostUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUI.swift; sourceTree = "<group>"; };
 		7E8AA0092B7C07A200014F4D /* HomeUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUI.swift; sourceTree = "<group>"; };
+		7EBA74542BCF3BCB00E4536A /* SpotifyAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIClient.swift; sourceTree = "<group>"; };
 		7EF0E7782B887E08001D3C83 /* ProfileUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUI.swift; sourceTree = "<group>"; };
+		8831AAD7CDB1966740DA2DAF /* Pods_MyMuze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMuze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0B39F5AFC956F82D4D87CB3 /* Pods-MyMuzeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuzeTests.release.xcconfig"; path = "Target Support Files/Pods-MyMuzeTests/Pods-MyMuzeTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1145BC32B97A7AF00F36020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C117E32B2B6980A80077FF62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C121EEFF2B603D0D003C4FA5 /* MyMuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +103,8 @@
 		C1C46E472B6DC946001AADDA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		C1D816642B83EE3D00513C21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C1D816682B84069D00513C21 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
+		CA52254235F239D862FFB625 /* Pods_MyMuze_MyMuzeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMuze_MyMuzeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E24925B2AB99AAA3A6E3889D /* Pods-MyMuze-MyMuzeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMuze-MyMuzeUITests.release.xcconfig"; path = "Target Support Files/Pods-MyMuze-MyMuzeUITests/Pods-MyMuze-MyMuzeUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1C46E4E2B6DCD86001AADDA /* GoogleSignIn in Frameworks */,
+				7E7035242BC5FBA500C5B365 /* SpotifyiOS in Frameworks */,
 				C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */,
 				C19893A82B92730200AB9F65 /* FirebaseAnalytics in Frameworks */,
 				C19893AC2B92730200AB9F65 /* FirebaseFirestore in Frameworks */,
@@ -105,6 +121,7 @@
 				C19893AA2B92730200AB9F65 /* FirebaseAuth in Frameworks */,
 				C1792CC22BA10DE3006622B0 /* URLImage in Frameworks */,
 				C19893AE2B92730200AB9F65 /* FirebaseFirestoreSwift in Frameworks */,
+				409025FA2F708E9499812EF2 /* Pods_MyMuze.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB44BC004B4299EF6CDEA74 /* Pods_MyMuzeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,12 +137,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8767CF6A974C5D647564DBF /* Pods_MyMuze_MyMuzeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		543C2E98361D00B74756A148 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8831AAD7CDB1966740DA2DAF /* Pods_MyMuze.framework */,
+				CA52254235F239D862FFB625 /* Pods_MyMuze_MyMuzeUITests.framework */,
+				2247BCD797A33B0D1A9CF158 /* Pods_MyMuzeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7E8AA0082B7C017000014F4D /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +162,19 @@
 				7E1069C42B914910009EC0AA /* PostUI.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		AC0D86F05DF4797FABF1D620 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				324756D69109FF63B022374E /* Pods-MyMuze.debug.xcconfig */,
+				38AE868E2456454DF1A4A933 /* Pods-MyMuze.release.xcconfig */,
+				7A13077BC9AAA5BF295A9B06 /* Pods-MyMuze-MyMuzeUITests.debug.xcconfig */,
+				E24925B2AB99AAA3A6E3889D /* Pods-MyMuze-MyMuzeUITests.release.xcconfig */,
+				359CA5E01237023E553DA53A /* Pods-MyMuzeTests.debug.xcconfig */,
+				C0B39F5AFC956F82D4D87CB3 /* Pods-MyMuzeTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		C117E32A2B69806D0077FF62 /* Views */ = {
@@ -155,6 +197,8 @@
 				C121EF122B603D0E003C4FA5 /* MyMuzeTests */,
 				C121EF1C2B603D0E003C4FA5 /* MyMuzeUITests */,
 				C121EF002B603D0D003C4FA5 /* Products */,
+				AC0D86F05DF4797FABF1D620 /* Pods */,
+				543C2E98361D00B74756A148 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				C1ABF3352B968F2A005C6B1E /* UserData.swift */,
+				7EBA74542BCF3BCB00E4536A /* SpotifyAPIClient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,9 +285,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C121EF232B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuze" */;
 			buildPhases = (
+				4640A75200458CFDD4855801 /* [CP] Check Pods Manifest.lock */,
 				C121EEFB2B603D0C003C4FA5 /* Sources */,
 				C121EEFC2B603D0C003C4FA5 /* Frameworks */,
 				C121EEFD2B603D0C003C4FA5 /* Resources */,
+				F1F8AF11C12E724C51E9A93E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -258,6 +305,7 @@
 				C19893AD2B92730200AB9F65 /* FirebaseFirestoreSwift */,
 				C19893AF2B92730200AB9F65 /* FirebaseStorage */,
 				C1792CC12BA10DE3006622B0 /* URLImage */,
+				7E7035232BC5FBA500C5B365 /* SpotifyiOS */,
 			);
 			productName = MyMuze;
 			productReference = C121EEFF2B603D0D003C4FA5 /* MyMuze.app */;
@@ -267,6 +315,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C121EF262B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeTests" */;
 			buildPhases = (
+				4184CADC17155F62108B73CB /* [CP] Check Pods Manifest.lock */,
 				C121EF0B2B603D0E003C4FA5 /* Sources */,
 				C121EF0C2B603D0E003C4FA5 /* Frameworks */,
 				C121EF0D2B603D0E003C4FA5 /* Resources */,
@@ -285,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C121EF292B603D0F003C4FA5 /* Build configuration list for PBXNativeTarget "MyMuzeUITests" */;
 			buildPhases = (
+				C72C1A767AAEDA79973CFC93 /* [CP] Check Pods Manifest.lock */,
 				C121EF152B603D0E003C4FA5 /* Sources */,
 				C121EF162B603D0E003C4FA5 /* Frameworks */,
 				C121EF172B603D0E003C4FA5 /* Resources */,
+				CE1D63EF4AD8F4E030D0499D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,6 +386,7 @@
 				C1C46E4B2B6DCD17001AADDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C1C46E4C2B6DCD86001AADDA /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				C1792CC02BA10DE3006622B0 /* XCRemoteSwiftPackageReference "url-image" */,
+				7E7035222BC5FBA500C5B365 /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C121EF002B603D0D003C4FA5 /* Products */;
 			projectDirPath = "";
@@ -374,6 +426,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4184CADC17155F62108B73CB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyMuzeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4640A75200458CFDD4855801 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyMuze-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C72C1A767AAEDA79973CFC93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyMuze-MyMuzeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE1D63EF4AD8F4E030D0499D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMuze-MyMuzeUITests/Pods-MyMuze-MyMuzeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMuze-MyMuzeUITests/Pods-MyMuze-MyMuzeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMuze-MyMuzeUITests/Pods-MyMuze-MyMuzeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1F8AF11C12E724C51E9A93E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMuze/Pods-MyMuze-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMuze/Pods-MyMuze-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMuze/Pods-MyMuze-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C121EEFB2B603D0C003C4FA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -392,6 +547,7 @@
 				C1ABF3382B969288005C6B1E /* PhoneSignInView.swift in Sources */,
 				C1ABF3362B968F2A005C6B1E /* UserData.swift in Sources */,
 				C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */,
+				7EBA74552BCF3BCB00E4536A /* SpotifyAPIClient.swift in Sources */,
 				C1D816692B84069D00513C21 /* NavigationBarExtensions.swift in Sources */,
 				C1ABF3312B9504E0005C6B1E /* Login.swift in Sources */,
 				C121EF032B603D0D003C4FA5 /* MyMuzeApp.swift in Sources */,
@@ -471,7 +627,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -534,7 +690,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -555,6 +711,7 @@
 		};
 		C121EF242B603D0F003C4FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 324756D69109FF63B022374E /* Pods-MyMuze.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -564,6 +721,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MyMuze/Preview Content\"";
 				DEVELOPMENT_TEAM = Y55HQS8TD6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyMuze/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -586,6 +747,7 @@
 		};
 		C121EF252B603D0F003C4FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38AE868E2456454DF1A4A933 /* Pods-MyMuze.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -595,6 +757,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MyMuze/Preview Content\"";
 				DEVELOPMENT_TEAM = Y55HQS8TD6;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyMuze/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -618,6 +784,7 @@
 		};
 		C121EF272B603D0F003C4FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 359CA5E01237023E553DA53A /* Pods-MyMuzeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -637,6 +804,7 @@
 		};
 		C121EF282B603D0F003C4FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0B39F5AFC956F82D4D87CB3 /* Pods-MyMuzeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -656,6 +824,7 @@
 		};
 		C121EF2A2B603D0F003C4FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A13077BC9AAA5BF295A9B06 /* Pods-MyMuze-MyMuzeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -673,6 +842,7 @@
 		};
 		C121EF2B2B603D0F003C4FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E24925B2AB99AAA3A6E3889D /* Pods-MyMuze-MyMuzeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -730,6 +900,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7E7035222BC5FBA500C5B365 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		C1792CC02BA10DE3006622B0 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
@@ -757,6 +935,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E7035232BC5FBA500C5B365 /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E7035222BC5FBA500C5B365 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
 		C1792CC12BA10DE3006622B0 /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C1792CC02BA10DE3006622B0 /* XCRemoteSwiftPackageReference "url-image" */;
