@@ -23,6 +23,7 @@
 		C121EF142B603D0E003C4FA5 /* MyMuzeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF132B603D0E003C4FA5 /* MyMuzeTests.swift */; };
 		C121EF1E2B603D0E003C4FA5 /* MyMuzeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */; };
 		C121EF202B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */; };
+		C14D45122BD1CF81004498D2 /* ExternalProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D45112BD1CF81004498D2 /* ExternalProfileView.swift */; };
 		C17244C12BC0AFC700F312AE /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17244C02BC0AFC700F312AE /* NotificationsView.swift */; };
 		C17244C32BC0B70700F312AE /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17244C22BC0B70700F312AE /* NotificationData.swift */; };
 		C17244C72BC2161300F312AE /* DebugToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17244C62BC2161300F312AE /* DebugToolsView.swift */; };
@@ -91,6 +92,7 @@
 		C121EF192B603D0E003C4FA5 /* MyMuzeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMuzeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C121EF1D2B603D0E003C4FA5 /* MyMuzeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITests.swift; sourceTree = "<group>"; };
 		C121EF1F2B603D0E003C4FA5 /* MyMuzeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMuzeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C14D45112BD1CF81004498D2 /* ExternalProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalProfileView.swift; sourceTree = "<group>"; };
 		C17244C02BC0AFC700F312AE /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		C17244C22BC0B70700F312AE /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
 		C17244C62BC2161300F312AE /* DebugToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugToolsView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				C1792CBC2B9D2AF5006622B0 /* ProfileSearchView.swift */,
 				C17244C02BC0AFC700F312AE /* NotificationsView.swift */,
 				C17244C62BC2161300F312AE /* DebugToolsView.swift */,
+				C14D45112BD1CF81004498D2 /* ExternalProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				7E8AA00A2B7C07A200014F4D /* HomeUI.swift in Sources */,
 				7EF0E7792B887E08001D3C83 /* ProfileUI.swift in Sources */,
 				C17244C72BC2161300F312AE /* DebugToolsView.swift in Sources */,
+				C14D45122BD1CF81004498D2 /* ExternalProfileView.swift in Sources */,
 				C1792CBD2B9D2AF5006622B0 /* ProfileSearchView.swift in Sources */,
 				C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */,
 				C117E32C2B6980A80077FF62 /* LoginView.swift in Sources */,
