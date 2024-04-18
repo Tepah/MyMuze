@@ -85,3 +85,57 @@ func searchUsersWithPrefix(prefix: String) async throws -> [String] {
 
     return combinedResults
 }
+
+func createNotification(notification: Notification) {
+    let db = Firestore.firestore()
+    let notificationRef = db.collection("notifications").document()
+    
+    let notificationDict = notification.toDictionary()
+    
+    notificationRef.setData(notificationDict) { error in
+        if let error = error {
+            print("Error adding notification: \(error.localizedDescription)")
+        } else {
+            print("Notification added successfully!")
+        }
+    }
+}
+
+func getNotificationsForUser(uid: String) async throws -> [Notification] {
+    let db = Firestore.firestore()
+    let notificationsCollection = db.collection("notifications")
+
+    // Perform a query to find all notifications for the specified user
+    let query = notificationsCollection.whereField("uid", isEqualTo: uid)
+
+    // Get the documents matching the query
+    let querySnapshot = try await query.getDocuments()
+
+    // Map the documents to Notification objects
+    let notifications = querySnapshot.documents.compactMap { document in
+        let type = document.get("type") as! String
+        let timestamp = document.get("timestamp") as! String
+        let uid = document.get("uid") as! String
+        let receivingUID = document.get("receivingUID") as! String
+        let message = document.get("message") as? String
+        let user = document.get("user") as? String
+        let postID = document.get("postID") as? String
+        let currentUser = document.get("currentUser") as? String
+        return Notification(notificationID: document.documentID,type: type, timestamp: timestamp, uid: uid, receivingUID: receivingUID, message: message, user: user, currentUser: currentUser, postID: postID)
+    }
+
+    return notifications
+}
+
+func deleteNotification(notification: String) {
+    let db = Firestore.firestore()
+    let notificationRef = db.collection("notifications").document(notification)
+    
+    notificationRef.delete { error in
+        if let error = error {
+            print("Error deleting notification: \(error.localizedDescription)")
+        } else {
+            print("Notification deleted successfully!")
+        }
+    }
+}

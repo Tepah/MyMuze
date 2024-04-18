@@ -15,6 +15,7 @@ struct MyMuzeApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var authManager = AuthManager()
     @State private var userExists: Bool?
+    @State private var userData: UserData?
     
     
     var body: some Scene {
@@ -25,8 +26,8 @@ struct MyMuzeApp: App {
                         ContentView()
                             .environmentObject(authManager)
                             .onChange(of: authManager.userExists) { _ in
-                                if authManager.phoneNumber != nil {
-                                    authManager.phoneNumber = nil
+                                if authManager.phoneNumber != "" {
+                                    authManager.phoneNumber = ""
                                 }
                                 loadData()
                             }
@@ -34,8 +35,8 @@ struct MyMuzeApp: App {
                         SignUpView()
                             .environmentObject(authManager)
                             .onChange(of: authManager.userExists) { _ in
-                                if authManager.phoneNumber != nil {
-                                    authManager.phoneNumber = nil
+                                if authManager.phoneNumber != "" {
+                                    authManager.phoneNumber = ""
                                 }
                                 loadData()
                             }
@@ -55,7 +56,7 @@ struct MyMuzeApp: App {
                     .environmentObject(authManager)
                     .onAppear {
                         // Retrieve the persisted phone number, if any
-                        authManager.phoneNumber = authManager.persistedPhoneNumber
+                        authManager.phoneNumber = authManager.persistedPhoneNumber ?? ""
                     }
                     .onChange(of: authManager.phoneNumber) { newPhoneNumber in
                         // Update the persisted phone number whenever it changes
@@ -73,6 +74,8 @@ struct MyMuzeApp: App {
                     let uid = user.uid
                     userExists = await doesUserExistWithUID(uid: uid)
                     authManager.userExists = userExists
+                    userData = try await getUser(uid: uid)
+                    authManager.user = userData!.username
                 }
             } catch {
                 print("Error loading data:", error.localizedDescription)
@@ -85,8 +88,9 @@ struct MyMuzeApp: App {
 class AuthManager: ObservableObject {
     // Published property to trigger UI updates
     @Published var isUserAuthenticated = false
-    @Published var phoneNumber: String?
+    @Published var phoneNumber: String = ""
     @Published var userExists: Bool?
+    @Published var user: String = ""
 
     init() {
         // Add authentication state change observer
@@ -102,9 +106,9 @@ class AuthManager: ObservableObject {
 
 extension AuthManager {
     // Extension to handle persistently storing and retrieving the phone number
-    var persistedPhoneNumber: String? {
+    var persistedPhoneNumber: String {
         get {
-            UserDefaults.standard.string(forKey: "persistedPhoneNumber")
+            UserDefaults.standard.string(forKey: "persistedPhoneNumber") ?? ""
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "persistedPhoneNumber")
@@ -117,6 +121,15 @@ extension AuthManager {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "userExists")
+        }
+    }
+    
+    var persistedUser: String {
+        get {
+            UserDefaults.standard.string(forKey: "persistedUser") ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "persistedUser")
         }
     }
 }

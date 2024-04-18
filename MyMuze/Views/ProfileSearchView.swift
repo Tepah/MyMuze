@@ -16,12 +16,6 @@ struct ProfileSearchView: View {
         BackgroundView()
             .overlay(
                 VStack {
-                    Text("Search")
-                        .foregroundColor(Color.white)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .bold()
-                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                        .padding(.leading, 10.0)
                     HStack {
                         TextField("Search", text: $searchText)
                             .onChange(of: searchText) { newSearchText in
@@ -88,7 +82,9 @@ struct ProfileSearchView: View {
                     }
                     
                 }
-                    
+                .padding(.top, 10)
+                .navigationBarTitle("Search")
+                .navigationBarTitleTextColor(.white)
             )
     }
     
