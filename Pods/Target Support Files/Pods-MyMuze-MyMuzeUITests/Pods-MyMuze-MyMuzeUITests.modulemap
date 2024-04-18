@@ -1,0 +1,6 @@
+framework module Pods_MyMuze_MyMuzeUITests {
+  umbrella header "Pods-MyMuze-MyMuzeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
