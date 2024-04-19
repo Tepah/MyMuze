@@ -9,34 +9,44 @@ import SwiftUI
 
 struct PostUI: View {
     @State private var searchQuery = ""
+    @State private var trackList: [TrackData] = []
    
     var body: some View {
         BackgroundView()
             .overlay(
-                VStack {
+                VStack (spacing: 20){
                     Text("Create a Post")
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                        .padding([.leading, .bottom], 10.0)
+                        .padding([.leading], 10.0)
                     Divider()
                         .overlay(.white)
                         .frame(height: 2)
                         .background(Color.white)
-                    Spacer()
+                    Text("Time to share your song of the day!")
+                        .font(.title3)
+                        .foregroundColor(Color.gray)
+                        .multilineTextAlignment(.center)
+                        .bold()
                     TextField("Search for a song or artist", text: $searchQuery)
-                        .padding(5.0)
+                        .padding(7.0)
                         .background(Color.white)
-                        .cornerRadius(5)
+                        .cornerRadius(10)
                         .frame(height: 20)
                         .foregroundColor(Color.black)
                         .autocapitalization(.none)
                         .onSubmit {
-                            print(searchQuery)
+                            print("Query: \(searchQuery)")
                             searchSpotify(searchInput: searchQuery)
                         }
-                    Spacer()
+                    List(trackList) { track in SpotifyTrackItem(trackInfo: track)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparatorTint(.myMuzeWhite)
+                    }
+                    .padding(.vertical, 10)
+                    .listStyle(PlainListStyle())
                 }
             )
     }
@@ -47,9 +57,16 @@ struct PostUI: View {
             if let token = accessToken {
                 print("Access Token: \(token)")
                 // Use the access token to make further requests to Spotify API
-                spotifyClient.searchTracks(query: searchInput, accessToken: token) { tracks in
-                    if let tracks = tracks {
-                        print("Found Tracks: \(tracks)")
+                spotifyClient.searchTracks(query: searchInput, accessToken: token) { trackInfo in
+                    if let trackInfo = trackInfo {
+                        print("Found \(trackInfo.count) Tracks: ")
+                        if !trackList.isEmpty {
+                            trackList = []
+                        }
+                        for track in trackInfo {
+                            trackList.append(track)
+                            track.printTrackData()
+                        }
                     } else {
                         print("Failed to get tracks")
                     }
