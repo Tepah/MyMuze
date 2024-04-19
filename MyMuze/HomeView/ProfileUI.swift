@@ -64,7 +64,7 @@ struct ProfileUI: View {
                                 .frame(maxWidth: .infinity)
                                 .bold()
                                 .font(/*@START_MENU_TOKEN@*/.title3/*@END_MENU_TOKEN@*/)
-                            Text("Following: " + String(currentUser?.followers.count ?? -1))
+                            Text("Followers: " + String(currentUser?.followers.count ?? -1))
                                 .foregroundColor(Color.myMuzeAccent)
                                 .frame(maxWidth: .infinity)
                                 .bold()
