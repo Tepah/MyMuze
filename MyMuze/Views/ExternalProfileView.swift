@@ -12,6 +12,7 @@ struct ExternalProfileView: View {
     @EnvironmentObject var authManager: AuthManager;
     @State private var user: UserData = UserData(profilePicture: "", username: "", email: "", name: "", userID: "", phone: "", followers: [], following: [], privateAcc: false);
     @State private var loading = true;
+    @State private var buttonLoading = false;
     let username: String;
     let uid: String;
     
@@ -43,7 +44,14 @@ struct ExternalProfileView: View {
                             //                        .bold()
                                 .font(.title3)
                             HStack {
-                                if user.followers.contains(authManager.user) {
+                                if buttonLoading {
+                                    Button (action: {})
+                                    {
+                                        ProgressView()
+                                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                            .scaleEffect(0.5)
+                                    }
+                                } else if user.followers.contains(Auth.auth().currentUser!.uid) {
                                     Button(action: {
                                         handleUnfollow()
                                     })
@@ -88,7 +96,7 @@ struct ExternalProfileView: View {
                                         .frame(maxWidth: .infinity)
                                         .bold()
                                         .font(/*@START_MENU_TOKEN@*/.title3/*@END_MENU_TOKEN@*/)
-                                    Text("Following: " + String(user.followers.count))
+                                    Text("Followers: " + String(user.followers.count))
                                         .foregroundColor(Color.myMuzeAccent)
                                         .frame(maxWidth: .infinity)
                                         .bold()
@@ -124,9 +132,13 @@ struct ExternalProfileView: View {
         Task {
             do {
                 user = try await getUser(uid: uid);
-                loading = false;
+                if user.username == ""  {
+                    print("User not found")
+                } else {
+                    loading = false
+                }
             } catch {
-                    print("Error loading data:", error.localizedDescription)
+                print("Error loading data:", error.localizedDescription)
             }
             
         }
@@ -135,12 +147,30 @@ struct ExternalProfileView: View {
     
     func handleFollow() {
         // TO DO: Implement follow/unfollow functionality
-        
+        Task {
+            buttonLoading = true;
+            let newNotification: Notification;
+            if !user.privateAcc {
+                newNotification = Notification(type: "follow", timestamp: Data().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid);
+                await addFollowerToUserData(uid: user.userID, followerUID: Auth.auth().currentUser!.uid);
+                user.followers.append(Auth.auth().currentUser!.uid);
+            } else {
+                newNotification = Notification(type: "accept", timestamp: Data().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid);
+                // TODO: Create a request to follow if private, and change button to "Requested"
+            }
+            createNotification(notification: newNotification);
+            buttonLoading = false;
+        }
     }
     
     func handleUnfollow() {
         // TO DO: Implement follow/unfollow functionality
-        
+        Task {
+            buttonLoading = true;
+            await removeFollowerFromUserData(uid: user.userID, followerUID: Auth.auth().currentUser!.uid);
+            user.followers.removeAll(where: { $0 == Auth.auth().currentUser!.uid });
+            buttonLoading = false;
+        }
     }
 }
 

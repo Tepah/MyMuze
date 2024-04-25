@@ -45,6 +45,56 @@ func addUserDataToFirestore(userData: UserData) {
     }
 }
 
+func addFollowerToUserData(uid: String, followerUID: String) async {
+    var db = Firestore.firestore()
+    var userRef = db.collection("users").document(uid)
+
+    // Add the follower UID to the 'followers' array
+    userRef.updateData(["followers": FieldValue.arrayUnion([followerUID])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+    
+    db = Firestore.firestore()
+    userRef = db.collection("users").document(followerUID)
+    
+    userRef.updateData(["following": FieldValue.arrayUnion([uid])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
+func removeFollowerFromUserData(uid: String, followerUID: String) async {
+    var db = Firestore.firestore()
+    var userRef = db.collection("users").document(uid)
+
+    // Remove the follower UID from the 'followers' array
+    userRef.updateData(["followers": FieldValue.arrayRemove([followerUID])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+    
+    db = Firestore.firestore()
+    userRef = db.collection("users").document(followerUID)
+    
+    userRef.updateData(["following": FieldValue.arrayRemove([uid])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
 func getUser(uid: String) async throws -> UserData {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(uid)
@@ -58,7 +108,9 @@ func getUser(uid: String) async throws -> UserData {
     let name = document.get("name") as! String
     let email = document.get("email") as! String
     let privateAcc = document.get("privateAcc") as! Bool
-    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
+    let followers = document.get("followers") as! [String]
+    let following = document.get("following") as! [String]
+    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: followers, following: following, privateAcc: privateAcc)
 }
 
 func searchUsersWithPrefix(prefix: String) async throws -> [String] {

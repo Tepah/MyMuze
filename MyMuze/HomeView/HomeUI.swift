@@ -69,15 +69,10 @@ struct HomeUI: View {
                                 .background(Color.white)
                             List {
                                 Post(username: "diamondly", song: "THE END", artist: "Alesso, Charlotte Lawrence")
-                                Divider()
-                                    .overlay(.white)
                                 Post(username: "potipitak", song: "golden hour - Fujii Kaze Remix", artist: "JVKE, Fujii Kaze")
-                                Divider()
-                                    .overlay(.white)
                                 Post(username: "dave123", song: "Use Somebody", artist: "Kings of Leon")
-                                Divider()
-                                    .overlay(.white)
                             }
+                            .accentColor(Color.myMuzeWhite)
                             .listStyle(PlainListStyle())
                             Spacer()
                         }

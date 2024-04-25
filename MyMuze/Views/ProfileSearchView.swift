@@ -57,14 +57,16 @@ struct ProfileSearchView: View {
                     .padding(.horizontal, 10)
                     if !resultUIDs.isEmpty {
                         if users.isEmpty {
-                            ForEach(resultUIDs.indices, id: \.self) { _ in
+                            List (resultUIDs, id: \.self) { _ in
                                 Rectangle()
                                     .fill(Color.myMuzeBlack)
                                     .cornerRadius(10)
-                                    .padding(.horizontal, 10)
-                                    .frame(height: 60)
+                                    .padding(.horizontal, 5)
+                                    .frame(height: 65)
+                                    .listRowBackground(Color.clear)
                             }
                             .padding(.vertical, 10)
+                            .listStyle(PlainListStyle())
                             .onAppear {
                                 loadUsers()
                             }
