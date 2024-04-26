@@ -151,11 +151,11 @@ struct ExternalProfileView: View {
             buttonLoading = true;
             let newNotification: Notification;
             if !user.privateAcc {
-                newNotification = Notification(type: "follow", timestamp: Data().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid);
+                newNotification = Notification(type: "follow", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
                 await addFollowerToUserData(uid: user.userID, followerUID: Auth.auth().currentUser!.uid);
                 user.followers.append(Auth.auth().currentUser!.uid);
             } else {
-                newNotification = Notification(type: "accept", timestamp: Data().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid);
+                newNotification = Notification(type: "accept", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
                 // TODO: Create a request to follow if private, and change button to "Requested"
             }
             createNotification(notification: newNotification);
