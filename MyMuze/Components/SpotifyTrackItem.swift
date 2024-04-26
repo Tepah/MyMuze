@@ -44,19 +44,15 @@ struct SpotifyTrackItem: View {
             .padding(.horizontal, 5)
             .offset(y: 20)
             Spacer()
-            Button(action: {
-                guard let spotifyLink = URL(string: self.trackInfo.url),
-                      UIApplication.shared.canOpenURL(spotifyLink) else {
-                    return
+            Image("SpotifyIcon")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .padding(.horizontal, 10)
+                .onTapGesture {
+                    print("Redirected to Spotify URL: \(self.trackInfo.url)")
+                    let spotifyLink = URL(string: self.trackInfo.url)
+                    UIApplication.shared.open(spotifyLink!, options: [:], completionHandler: nil)
                 }
-                UIApplication.shared.open(spotifyLink, options: [:], completionHandler: nil)
-            }) {
-                Image("SpotifyIcon")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .padding(.horizontal, 10)
-
-            }
         }
     }
 }
