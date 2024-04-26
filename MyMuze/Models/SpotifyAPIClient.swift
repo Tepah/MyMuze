@@ -39,7 +39,7 @@ class SpotifyAPIClient {
             }
     }
     
-    func searchTracks(query: String, accessToken: String, completion: @escaping ([String]?) -> Void) {
+    func searchTracks(query: String, accessToken: String, completion: @escaping ([TrackData]?) -> Void) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(accessToken)"
         ]
@@ -47,8 +47,6 @@ class SpotifyAPIClient {
         let parameters: [String: String] = [
             "q": query,
             "type": "track",
-            "market": "US",
-            "offset": "20"
         ]
         
         AF.request(searchURL, method: .get, parameters: parameters, headers: headers)
@@ -59,8 +57,21 @@ class SpotifyAPIClient {
                     if let JSON = value as? [String: Any],
                        let tracks = JSON["tracks"] as? [String: Any],
                        let items = tracks["items"] as? [[String: Any]] {
-                        let trackNames = items.compactMap { $0["name"] as? String }
-                        completion(trackNames)
+                        var trackInfo: [TrackData] = []
+                        for item in items {
+                            if let name = item["name"] as? String,
+                               let id = item["id"] as? String,
+                               let artists = item["artists"] as? [[String: Any]],
+                               let artist = artists.first?["name"] as? String,
+                               let externalURL = item["external_urls"] as? [String: Any],
+                               let url = externalURL["spotify"] as? String,
+                               let album = item["album"] as? [String: Any],
+                               let images = album["images"] as? [[String: Any]],
+                               let cover = images.first?["url"] as? String {
+                                trackInfo.append(TrackData(spotifyID: id, name: name, artist: artist, cover: cover, url: url))
+                            }
+                        }
+                        completion(trackInfo)
                     } else {
                         completion(nil)
                     }
