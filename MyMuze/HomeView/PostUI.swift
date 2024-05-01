@@ -41,12 +41,17 @@ struct PostUI: View {
                             print("Query: \(searchQuery)")
                             searchSpotify(searchInput: searchQuery)
                         }
-                    List(trackList) { track in SpotifyTrackItem(trackInfo: track)
-                            .listRowBackground(Color.clear)
-                            .listRowSeparatorTint(.myMuzeWhite)
+                    NavigationView {
+                        ZStack{
+                            BackgroundView()
+                            List(trackList) { track in SpotifyTrackItem(trackInfo: track)
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparatorTint(.myMuzeWhite)
+                            }
+                            .padding(.vertical, 10)
+                            .listStyle(PlainListStyle())
+                        }
                     }
-                    .padding(.vertical, 10)
-                    .listStyle(PlainListStyle())
                 }
             )
     }
@@ -75,6 +80,12 @@ struct PostUI: View {
                 print("Failed to get access token")
             }
         }
+    }
+}
+
+struct PublishView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
