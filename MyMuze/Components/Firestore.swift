@@ -9,6 +9,7 @@ import Foundation
 
 import FirebaseFirestore
 
+// Firestore User Collection Functions
 func doesUserExistWithUID(uid: String) async -> Bool {
     let db = Firestore.firestore()
     let usersCollection = db.collection("users")
@@ -138,6 +139,7 @@ func searchUsersWithPrefix(prefix: String) async throws -> [String] {
     return combinedResults
 }
 
+// Firestore Notification Collection Functions
 func createNotification(notification: Notification) {
     let db = Firestore.firestore()
     let notificationRef = db.collection("notifications").document()
@@ -151,6 +153,20 @@ func createNotification(notification: Notification) {
             print("Notification added successfully!")
         }
     }
+}
+
+func checkNotificationExists(toUser: String, fromUser: String, type: String) async throws -> Bool {
+    let db = Firestore.firestore()
+    let notificationsCollection = db.collection("notifications")
+
+    // Perform a query to find the document with the specified username and type
+    let query = notificationsCollection.whereField("uid", isEqualTo: toUser).whereField("type", isEqualTo: type).whereField("receivingUID", isEqualTo: fromUser)
+
+    // Get the documents matching the query
+    let querySnapshot = try await query.getDocuments()
+
+    // Check if there is at least one document matching the username and type
+    return !querySnapshot.documents.isEmpty
 }
 
 func getNotificationsForUser(uid: String) async throws -> [Notification] {

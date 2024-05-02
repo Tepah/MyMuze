@@ -149,16 +149,20 @@ struct ExternalProfileView: View {
         // TO DO: Implement follow/unfollow functionality
         Task {
             buttonLoading = true;
-            let newNotification: Notification;
             if !user.privateAcc {
-                newNotification = Notification(type: "follow", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
+                if try await checkNotificationExists(toUser: user.userID, fromUser: Auth.auth().currentUser!.uid, type: "follow") {
+                    print("Notification already exists")
+                } else {
+                    let newNotification = Notification(type: "follow", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
+                    createNotification(notification: newNotification);
+                }
                 await addFollowerToUserData(uid: user.userID, followerUID: Auth.auth().currentUser!.uid);
                 user.followers.append(Auth.auth().currentUser!.uid);
             } else {
-                newNotification = Notification(type: "accept", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
+                let newNotification = Notification(type: "accept", timestamp: Date().description, uid: user.userID, receivingUID: Auth.auth().currentUser!.uid, user: authManager.user);
+                createNotification(notification: newNotification);
                 // TODO: Create a request to follow if private, and change button to "Requested"
             }
-            createNotification(notification: newNotification);
             buttonLoading = false;
         }
     }

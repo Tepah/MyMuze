@@ -15,7 +15,7 @@ struct LoginView: View {
     // Login Page View
     var body: some View {
         NavigationView {
-            BackgroundView()
+            LoginBackgroundView()
                 .overlay (
                     VStack {
                         Spacer()

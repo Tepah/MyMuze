@@ -37,76 +37,76 @@ struct DebugToolsView: View {
                             .font(.title)
                     )
             }
-            Text("Notifcations")
-                .foregroundColor(Color.white)
-                .font(.title)
-            HStack {
-                Button(action: {
-                    // Make a follower notification (No actual new follower)
-                    let uid = Auth.auth().currentUser?.uid ?? "temp"
-                    print(uid)
-                    let notification = Notification(type: "follow", timestamp: Date().description, uid: uid, receivingUID: "temp", user: "temp")
-                    
-                    createNotification(notification: notification)
-                }) {
-                    Rectangle()
-                        .foregroundColor(Color.green)
-                        .frame(width: 80, height: 30)
-                        .cornerRadius(10)
-                        .overlay(
-                            Text("follower")
-                                .foregroundColor(Color.white)
-                        )
-                }
-                Button(action: {
-                    // Make a request Notification (New request will allow a fake follower)
-                    let uid = Auth.auth().currentUser?.uid ?? "temp"
-                    print(authManager.user);
-                    let notification = Notification(type: "request", timestamp: Date().description, uid: uid, receivingUID: "temp", user: "user", currentUser: authManager.user)
-                    createNotification(notification: notification)
-                }) {
-                    Rectangle()
-                        .foregroundColor(Color.green)
-                        .frame(width: 80, height: 30)
-                        .cornerRadius(10)
-                        .overlay(
-                            Text("request")
-                                .foregroundColor(Color.white)
-                        )
-                }
-                Button(action: {
-                    // Make a comment Notification (On a fake post)
-                    let uid = Auth.auth().currentUser?.uid ?? "temp"
-                    let notification = Notification(type: "comment", timestamp: Data().description, uid: uid, receivingUID: "temp", message: "This is a message", user: "temp", postID: "fakeID")
-                    
-                    createNotification(notification: notification)
-                }) {
-                    Rectangle()
-                        .foregroundColor(Color.green)
-                        .frame(width: 80, height: 30)
-                        .cornerRadius(10)
-                        .overlay(
-                            Text("comment")
-                                .foregroundColor(Color.white)
-                        )
-                }
-                Button(action: {
-                    // Make a comment Notification (On a fake post)
-                    let uid = Auth.auth().currentUser?.uid ?? "temp"
-                    let notification = Notification(type: "like", timestamp: Data().description, uid: uid, receivingUID: "temp", user: "temp", postID: "fakeID")
-                    
-                    createNotification(notification: notification)
-                }) {
-                    Rectangle()
-                        .foregroundColor(Color.green)
-                        .frame(width: 80, height: 30)
-                        .cornerRadius(10)
-                        .overlay(
-                            Text("like")
-                                .foregroundColor(Color.white)
-                        )
-                }
-            }
+//            Text("Notifcations")
+//                .foregroundColor(Color.white)
+//                .font(.title)
+//            HStack {
+//                Button(action: {
+//                    // Make a follower notification (No actual new follower)
+//                    let uid = Auth.auth().currentUser?.uid ?? "temp"
+//                    print(uid)
+//                    let notification = Notification(type: "follow", timestamp: Date().description, uid: uid, receivingUID: "temp", user: "temp")
+//                    
+//                    createNotification(notification: notification)
+//                }) {
+//                    Rectangle()
+//                        .foregroundColor(Color.green)
+//                        .frame(width: 80, height: 30)
+//                        .cornerRadius(10)
+//                        .overlay(
+//                            Text("follower")
+//                                .foregroundColor(Color.white)
+//                        )
+//                }
+//                Button(action: {
+//                    // Make a request Notification (New request will allow a fake follower)
+//                    let uid = Auth.auth().currentUser?.uid ?? "temp"
+//                    print(authManager.user);
+//                    let notification = Notification(type: "request", timestamp: Date().description, uid: uid, receivingUID: "temp", user: "user", currentUser: authManager.user)
+//                    createNotification(notification: notification)
+//                }) {
+//                    Rectangle()
+//                        .foregroundColor(Color.green)
+//                        .frame(width: 80, height: 30)
+//                        .cornerRadius(10)
+//                        .overlay(
+//                            Text("request")
+//                                .foregroundColor(Color.white)
+//                        )
+//                }
+//                Button(action: {
+//                    // Make a comment Notification (On a fake post)
+//                    let uid = Auth.auth().currentUser?.uid ?? "temp"
+//                    let notification = Notification(type: "comment", timestamp: Data().description, uid: uid, receivingUID: "temp", message: "This is a message", user: "temp", postID: "fakeID")
+//                    
+//                    createNotification(notification: notification)
+//                }) {
+//                    Rectangle()
+//                        .foregroundColor(Color.green)
+//                        .frame(width: 80, height: 30)
+//                        .cornerRadius(10)
+//                        .overlay(
+//                            Text("comment")
+//                                .foregroundColor(Color.white)
+//                        )
+//                }
+//                Button(action: {
+//                    // Make a comment Notification (On a fake post)
+//                    let uid = Auth.auth().currentUser?.uid ?? "temp"
+//                    let notification = Notification(type: "like", timestamp: Data().description, uid: uid, receivingUID: "temp", user: "temp", postID: "fakeID")
+//                    
+//                    createNotification(notification: notification)
+//                }) {
+//                    Rectangle()
+//                        .foregroundColor(Color.green)
+//                        .frame(width: 80, height: 30)
+//                        .cornerRadius(10)
+//                        .overlay(
+//                            Text("like")
+//                                .foregroundColor(Color.white)
+//                        )
+//                }
+//            }
         }
         )
     }
