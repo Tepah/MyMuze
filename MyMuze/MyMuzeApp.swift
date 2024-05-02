@@ -74,8 +74,10 @@ struct MyMuzeApp: App {
                     let uid = user.uid
                     userExists = await doesUserExistWithUID(uid: uid)
                     authManager.userExists = userExists
-                    userData = try await getUser(uid: uid)
-                    authManager.user = userData!.username
+                    if authManager.userExists == true {
+                        userData = try await getUser(uid: uid)
+                        authManager.user = userData!.username
+                    }
                 }
             } catch {
                 print("Error loading data:", error.localizedDescription)

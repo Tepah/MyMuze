@@ -23,7 +23,7 @@ struct SearchItem: View {
     // Temporary profile info
     
     var body: some View {
-        NavigationLink(destination: ProfileUI()) {
+        NavigationLink(destination: ExternalProfileView(username: profileInfo.username, uid: profileInfo.userID)) {
             HStack {
                 if self.profileInfo.profilePicture == "" {
                     Image(systemName: "person.fill")

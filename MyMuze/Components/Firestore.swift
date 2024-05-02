@@ -9,6 +9,7 @@ import Foundation
 
 import FirebaseFirestore
 
+// Firestore User Collection Functions
 func doesUserExistWithUID(uid: String) async -> Bool {
     let db = Firestore.firestore()
     let usersCollection = db.collection("users")
@@ -45,6 +46,56 @@ func addUserDataToFirestore(userData: UserData) {
     }
 }
 
+func addFollowerToUserData(uid: String, followerUID: String) async {
+    var db = Firestore.firestore()
+    var userRef = db.collection("users").document(uid)
+
+    // Add the follower UID to the 'followers' array
+    userRef.updateData(["followers": FieldValue.arrayUnion([followerUID])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+    
+    db = Firestore.firestore()
+    userRef = db.collection("users").document(followerUID)
+    
+    userRef.updateData(["following": FieldValue.arrayUnion([uid])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
+func removeFollowerFromUserData(uid: String, followerUID: String) async {
+    var db = Firestore.firestore()
+    var userRef = db.collection("users").document(uid)
+
+    // Remove the follower UID from the 'followers' array
+    userRef.updateData(["followers": FieldValue.arrayRemove([followerUID])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+    
+    db = Firestore.firestore()
+    userRef = db.collection("users").document(followerUID)
+    
+    userRef.updateData(["following": FieldValue.arrayRemove([uid])]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
 func getUser(uid: String) async throws -> UserData {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(uid)
@@ -58,7 +109,9 @@ func getUser(uid: String) async throws -> UserData {
     let name = document.get("name") as! String
     let email = document.get("email") as! String
     let privateAcc = document.get("privateAcc") as! Bool
-    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: [], following: [], privateAcc: privateAcc)
+    let followers = document.get("followers") as! [String]
+    let following = document.get("following") as! [String]
+    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: followers, following: following, privateAcc: privateAcc)
 }
 
 func searchUsersWithPrefix(prefix: String) async throws -> [String] {
@@ -86,6 +139,7 @@ func searchUsersWithPrefix(prefix: String) async throws -> [String] {
     return combinedResults
 }
 
+// Firestore Notification Collection Functions
 func createPost(post: PostData) {
     let db = Firestore.firestore()
     let postRef = db.collection("posts").document()
@@ -114,6 +168,20 @@ func createNotification(notification: Notification) {
             print("Notification added successfully!")
         }
     }
+}
+
+func checkNotificationExists(toUser: String, fromUser: String, type: String) async throws -> Bool {
+    let db = Firestore.firestore()
+    let notificationsCollection = db.collection("notifications")
+
+    // Perform a query to find the document with the specified username and type
+    let query = notificationsCollection.whereField("uid", isEqualTo: toUser).whereField("type", isEqualTo: type).whereField("receivingUID", isEqualTo: fromUser)
+
+    // Get the documents matching the query
+    let querySnapshot = try await query.getDocuments()
+
+    // Check if there is at least one document matching the username and type
+    return !querySnapshot.documents.isEmpty
 }
 
 func getNotificationsForUser(uid: String) async throws -> [Notification] {
