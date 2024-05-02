@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import URLImage
+import FirebaseAuth
 
 struct PostUI: View {
     @State private var searchQuery = ""
@@ -25,31 +27,33 @@ struct PostUI: View {
                         .overlay(.white)
                         .frame(height: 2)
                         .background(Color.white)
-                    Text("Time to share your song of the day!")
-                        .font(.title3)
-                        .foregroundColor(Color.gray)
-                        .multilineTextAlignment(.center)
-                        .bold()
-                    TextField("Search for a song or artist", text: $searchQuery)
-                        .padding(7.0)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .frame(height: 20)
-                        .foregroundColor(Color.black)
-                        .autocapitalization(.none)
-                        .onSubmit {
-                            print("Query: \(searchQuery)")
-                            searchSpotify(searchInput: searchQuery)
-                        }
                     NavigationView {
                         ZStack{
                             BackgroundView()
-                            List(trackList) { track in SpotifyTrackItem(trackInfo: track)
-                                    .listRowBackground(Color.clear)
-                                    .listRowSeparatorTint(.myMuzeWhite)
+                            VStack {
+                                Text("Time to share your song of the day!")
+                                    .font(.title3)
+                                    .foregroundColor(Color.gray)
+                                    .multilineTextAlignment(.center)
+                                    .bold()
+                                TextField("Search for a song or artist", text: $searchQuery)
+                                    .padding(7.0)
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                    .frame(height: 50)
+                                    .foregroundColor(Color.black)
+                                    .autocapitalization(.none)
+                                    .onSubmit {
+                                        print("Query: \(searchQuery)")
+                                        searchSpotify(searchInput: searchQuery)
+                                    }
+                                List(trackList) { track in SpotifyTrackItem(trackInfo: track)
+                                        .listRowBackground(Color.clear)
+                                        .listRowSeparatorTint(.myMuzeWhite)
+                                }
+                                .padding(.vertical, 10)
+                                .listStyle(PlainListStyle())
                             }
-                            .padding(.vertical, 10)
-                            .listStyle(PlainListStyle())
                         }
                     }
                 }
@@ -84,8 +88,86 @@ struct PostUI: View {
 }
 
 struct PublishView: View {
+    @State private var currentUser: UserData? = nil
+    @State private var postString: String = "Post"
+    
+    let selectedTrack: TrackData
+    
+    init(selectedTrack: TrackData) {
+        self.selectedTrack = selectedTrack
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        BackgroundView()
+        VStack {
+            Rectangle()
+                .fill(Color.clear)
+//                .border(Color.myMuzeWhite, width: 1)
+                .frame(width: 375, height: 450)
+                .overlay(
+                    VStack {
+                        URLImage(URL(string: self.selectedTrack.cover)!) { image in
+                            image
+                                .resizable()
+                                .frame(width: 300, height: 300)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .padding(.horizontal, 10)
+                        }
+                        VStack{
+                            Text("\(selectedTrack.name)")
+                                .bold()
+                                .foregroundColor(Color.white)
+                                .frame(maxWidth: . infinity, alignment: .center)
+                            Text("\(selectedTrack.artist)")
+                                .foregroundColor(Color.gray)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                        .padding(.top, 25.0)
+//                        Spacer()
+                    }
+                )
+                .onAppear{
+                    loadUser()
+                }
+            
+            Button(action: {
+                let now = Date()
+                let dtFormatter = DateFormatter()
+                dtFormatter.dateStyle = .long
+                dtFormatter.timeStyle = .long
+                let formattedTimestamp = dtFormatter.string(from: now)
+                
+                let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", timestamp: formattedTimestamp, track: "\(selectedTrack.name) - \(selectedTrack.artist)")
+                postString = "Posted!"
+                createPost(post: newPost)
+            }, label: {
+                Rectangle()
+                    .foregroundColor(Color.myMuzeAccent)
+                    .frame(width: 80, height: 30)
+                    .cornerRadius(10)
+                    .overlay(
+                        Text("\(postString)")
+                            .foregroundColor(Color.myMuzeWhite)
+                            .bold()
+                    )
+            })
+            
+        }
+    }
+    
+    func loadUser() {
+        Task {
+            do {
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    currentUser = try await getUser(uid: uid)
+                }
+            } catch {
+                    print("Error loading data:", error.localizedDescription)
+            }
+            
+        }
     }
 }
 
