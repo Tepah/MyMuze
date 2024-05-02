@@ -59,7 +59,7 @@ struct SpotifyTrackItem: View {
                         }
                 }
             )
-            .background(NavigationLink(destination: PublishView()) {
+            .background(NavigationLink(destination: PublishView(selectedTrack: trackInfo)) {
                 EmptyView()
             })
         
