@@ -86,6 +86,21 @@ func searchUsersWithPrefix(prefix: String) async throws -> [String] {
     return combinedResults
 }
 
+func createPost(post: PostData) {
+    let db = Firestore.firestore()
+    let postRef = db.collection("posts").document()
+    
+    let postDict = post.toDictionary()
+    
+    postRef.setData(postDict) { error in
+        if let error = error {
+            print("Error adding post: \(error.localizedDescription)")
+        } else {
+            print("Post created successfully!")
+        }
+    }
+}
+
 func createNotification(notification: Notification) {
     let db = Firestore.firestore()
     let notificationRef = db.collection("notifications").document()

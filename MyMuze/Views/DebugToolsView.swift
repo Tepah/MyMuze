@@ -37,7 +37,7 @@ struct DebugToolsView: View {
                             .font(.title)
                     )
             }
-            Text("Notifcations")
+            Text("Notifications")
                 .foregroundColor(Color.white)
                 .font(.title)
             HStack {
