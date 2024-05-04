@@ -112,48 +112,48 @@ struct PostItem: View {
     
     var body: some View {
         HStack {
-            URLImage(URL(string: self.postInfo.cover)!) { image in
-                image
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(5)
-            }
             VStack{
-//                NavigationLink(destination: ExternalProfileView(username: postInfo.username, uid: postInfo.uid)) {
-//                    Text("@" + postInfo.username)
-//                        .foregroundColor(Color.myMuzeAccent)
-//                        .frame(maxWidth: .infinity, alignment: .topLeading)
-//                        .fontWeight(.bold)
-//                }
-                Text("@" + postInfo.username)
-                    .foregroundColor(Color.myMuzeAccent)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                    .fontWeight(.bold)
-                Text(postInfo.track)
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: . infinity, alignment: .topLeading)
-                Text(postInfo.artist)
-                    .foregroundColor(Color.gray)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                NavigationLink(destination: ExternalProfileView(username: postInfo.username, uid: postInfo.uid)) {
+                    Text("@" + postInfo.username)
+                        .foregroundColor(Color.myMuzeAccent)
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                        .fontWeight(.bold)
+                }
+                HStack {
+                    URLImage(URL(string: self.postInfo.cover)!) { image in
+                        image
+                            .resizable()
+                            .frame(width: 40, height: 40, alignment: .leading)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(5)
+                    }
+                    VStack {
+                        Text(postInfo.track)
+                            .foregroundColor(Color.white)
+                            .frame(maxWidth: . infinity, alignment: .topLeading)
+                        Text(postInfo.artist)
+                            .foregroundColor(Color.gray)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
             }
-            // TODO: add like and comment buttons
             Button (
                 action: { isLiked.toggle() },
                 label: {
                     switch isLiked {
                     case true:
                         Image(systemName: "heart.fill")
-                            .foregroundColor(Color.myMuzeWhite)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color.myMuzeAccent)
                     default:
                         Image(systemName: "heart")
                             .foregroundColor(Color.myMuzeAccent)
-//                            .frame(maxWidth: .infinity, alignment: .leading)
                             
                     }
                 }
             )
+            // TODO: implement comment button
+//            Image(systemName: "message")
+//                .foregroundColor(Color.myMuzeAccent)
         }
         .listRowBackground(Color.clear)
         .listRowSeparatorTint(.myMuzeWhite)
