@@ -131,13 +131,9 @@ struct PublishView: View {
                 }
             
             Button(action: {
-                let now = Date()
-                let dtFormatter = DateFormatter()
-                dtFormatter.dateStyle = .long
-                dtFormatter.timeStyle = .long
-                let formattedTimestamp = dtFormatter.string(from: now)
-                
-                let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", timestamp: formattedTimestamp, track: "\(selectedTrack.name) - \(selectedTrack.artist)")
+                // Retrieves today's date
+                let now = Date().formatted(date: .long, time: .omitted)
+                let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", date: now, track: "\(selectedTrack.name)", artist: "\(selectedTrack.artist)", cover: "\(selectedTrack.cover)")
                 postString = "Posted!"
                 createPost(post: newPost)
             }, label: {
