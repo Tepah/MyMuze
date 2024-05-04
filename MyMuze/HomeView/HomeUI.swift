@@ -7,10 +7,13 @@
 
 import SwiftUI
 import FirebaseAuth
+import URLImage
 
 struct HomeUI: View {
     @State var loading = true
     @State var notifications = [Notification]()
+    @State var postFeed: [PostData] = []
+    @State var currentDate = Date().formatted(date: .long, time: .omitted)
     
     let uid = Auth.auth().currentUser?.uid ?? "temp"
     
@@ -67,13 +70,14 @@ struct HomeUI: View {
                                 .overlay(.white)
                                 .frame(height: 2)
                                 .background(Color.white)
-                            List {
-                                Post(username: "diamondly", song: "THE END", artist: "Alesso, Charlotte Lawrence")
-                                Post(username: "potipitak", song: "golden hour - Fujii Kaze Remix", artist: "JVKE, Fujii Kaze")
-                                Post(username: "dave123", song: "Use Somebody", artist: "Kings of Leon")
+                            List(postFeed) {
+                                post in PostItem(postInfo: post)
                             }
                             .accentColor(Color.myMuzeWhite)
                             .listStyle(PlainListStyle())
+                            .refreshable {
+                                loadData()
+                            }
                             Spacer()
                         }
                     }
@@ -84,42 +88,76 @@ struct HomeUI: View {
                 }
         }
     }
-    
-    struct Post: View {
-        let username: String
-        let song: String
-        let artist: String
-        
-        var body: some View {
-            VStack{
-                // TODO: Change with actual UID later
-                NavigationLink(destination: ExternalProfileView(username: username, uid: "SWvqeB1XP7cYUpxnULF10Nkzi7r1")) {
-                    Text("@" + username)
-                        .foregroundColor(Color("Accent Color"))
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                        .fontWeight(.bold)
-                }
-                Text(song)
-                    .foregroundColor(Color.white)
-                    .frame(maxWidth: . infinity, alignment: .topLeading)
-                Text(artist)
-                    .foregroundColor(Color.gray)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .listRowBackground(Color.clear)
-            .padding(.leading, 10.0)
-        }
-    }
-    
     func loadData() {
         Task {
             do {
                 notifications = try await getNotificationsForUser(uid:uid);
+                postFeed = try await collectDailyFeed(date: currentDate)
                 loading = false;
             } catch {
                 print("Error loading notifications")
             }
         }
+    }
+}
+
+struct PostItem: View {
+    @State var isLiked = false
+    
+    let postInfo: PostData
+    
+    init(postInfo: PostData) {
+        self.postInfo = postInfo
+    }
+    
+    var body: some View {
+        HStack {
+            URLImage(URL(string: self.postInfo.cover)!) { image in
+                image
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(5)
+            }
+            VStack{
+//                NavigationLink(destination: ExternalProfileView(username: postInfo.username, uid: postInfo.uid)) {
+//                    Text("@" + postInfo.username)
+//                        .foregroundColor(Color.myMuzeAccent)
+//                        .frame(maxWidth: .infinity, alignment: .topLeading)
+//                        .fontWeight(.bold)
+//                }
+                Text("@" + postInfo.username)
+                    .foregroundColor(Color.myMuzeAccent)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .fontWeight(.bold)
+                Text(postInfo.track)
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth: . infinity, alignment: .topLeading)
+                Text(postInfo.artist)
+                    .foregroundColor(Color.gray)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            // TODO: add like and comment buttons
+            Button (
+                action: { isLiked.toggle() },
+                label: {
+                    switch isLiked {
+                    case true:
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(Color.myMuzeWhite)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    default:
+                        Image(systemName: "heart")
+                            .foregroundColor(Color.myMuzeAccent)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                    }
+                }
+            )
+        }
+        .listRowBackground(Color.clear)
+        .listRowSeparatorTint(.myMuzeWhite)
+        .padding(.leading, 10.0)
     }
 }
 
