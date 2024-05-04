@@ -137,20 +137,15 @@ struct PostItem: View {
                     }
                 }
             }
-            Button (
-                action: { isLiked.toggle() },
-                label: {
-                    switch isLiked {
-                    case true:
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(Color.myMuzeAccent)
-                    default:
-                        Image(systemName: "heart")
-                            .foregroundColor(Color.myMuzeAccent)
-                            
-                    }
+            Image(systemName: isLiked ? "heart.fill" : "heart")
+                .resizable()
+                .foregroundColor(Color.myMuzeAccent)
+                .frame(width: 20, height: 20)
+                .padding(.top, 30)
+                .onTapGesture {
+                    isLiked.toggle()
+                    // TODO: Add a function to add likes
                 }
-            )
             // TODO: implement comment button
 //            Image(systemName: "message")
 //                .foregroundColor(Color.myMuzeAccent)
