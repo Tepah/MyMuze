@@ -28,11 +28,10 @@ struct ContentView: View {
                             }
                     }
                     .toolbar(.visible, for: .tabBar)
-                    .toolbarBackground(Color.gray, for: .tabBar
-                    )
+                    .toolbarBackground(Color.myMuzeTab, for: .tabBar)
                 }
                     .accentColor(Color("Accent Color"))
-    )
+            )
     }
 }
 
