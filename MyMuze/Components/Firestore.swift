@@ -173,12 +173,33 @@ func collectDailyFeed(date: String) async throws -> [PostData] {
         let track = document.get("track") as! String
         let artist = document.get("artist") as! String
         let cover = document.get("cover") as! String
-        let likes = document.get("likes") as? Int
-        let comments = document.get("comments") as? [String]
+//        let likes = document.get("likes") as? Int
+//        let comments = document.get("comments") as? [String]
         return PostData(uid: uid, username: username, date: date, track: track, artist: artist, cover: cover)
     }
 
     return posts
+}
+
+func didUserPost(uid: String) async -> Bool {
+    let db = Firestore.firestore()
+    let postCollection = db.collection("posts")
+    let today = Date().formatted(date: .long, time: .omitted)
+
+    // Perform a query to find the document with the specified UID
+    let userQuery = postCollection.whereField("uid", isEqualTo: uid)
+    let dateQuery = userQuery.whereField("date", isEqualTo: today)
+
+    do {
+        let snapshot = try await dateQuery.getDocuments()
+
+        // Check if there is a post by the UID
+        return !snapshot.documents.isEmpty
+    } catch {
+        // Handle the error if needed
+        print("Error searching for post by user:", error.localizedDescription)
+        return false
+    }
 }
 
 // Firestore Notification Collection Functions
