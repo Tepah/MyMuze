@@ -139,7 +139,7 @@ func searchUsersWithPrefix(prefix: String) async throws -> [String] {
     return combinedResults
 }
 
-// Firestore Notification Collection Functions
+// Firestore Post Collection Function(s)
 func createPost(post: PostData) {
     let db = Firestore.firestore()
     let postRef = db.collection("posts").document()
@@ -155,6 +155,54 @@ func createPost(post: PostData) {
     }
 }
 
+func collectDailyFeed(date: String) async throws -> [PostData] {
+    let db = Firestore.firestore()
+    let postCollection = db.collection("posts")
+
+    // Perform a query to find all posts for the specified date
+    let query = postCollection.whereField("date", isEqualTo: date)
+
+    // Get the documents matching the query
+    let querySnapshot = try await query.getDocuments()
+
+    // Map the documents to PostData objects
+    let posts = querySnapshot.documents.compactMap { document in
+        let username = document.get("username") as! String
+        let date = document.get("date") as! String
+        let uid = document.get("uid") as! String
+        let track = document.get("track") as! String
+        let artist = document.get("artist") as! String
+        let cover = document.get("cover") as! String
+//        let likes = document.get("likes") as? Int
+//        let comments = document.get("comments") as? [String]
+        return PostData(uid: uid, username: username, date: date, track: track, artist: artist, cover: cover)
+    }
+
+    return posts
+}
+
+func didUserPost(uid: String) async -> Bool {
+    let db = Firestore.firestore()
+    let postCollection = db.collection("posts")
+    let today = Date().formatted(date: .long, time: .omitted)
+
+    // Perform a query to find the document with the specified UID
+    let userQuery = postCollection.whereField("uid", isEqualTo: uid)
+    let dateQuery = userQuery.whereField("date", isEqualTo: today)
+
+    do {
+        let snapshot = try await dateQuery.getDocuments()
+
+        // Check if there is a post by the UID
+        return !snapshot.documents.isEmpty
+    } catch {
+        // Handle the error if needed
+        print("Error searching for post by user:", error.localizedDescription)
+        return false
+    }
+}
+
+// Firestore Notification Collection Functions
 func createNotification(notification: Notification) {
     let db = Firestore.firestore()
     let notificationRef = db.collection("notifications").document()
