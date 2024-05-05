@@ -90,6 +90,7 @@ struct PostUI: View {
 struct PublishView: View {
     @State private var currentUser: UserData? = nil
     @State private var postString: String = "Post"
+    @State private var hasPosted = false
     
     let selectedTrack: TrackData
     
@@ -123,27 +124,21 @@ struct PublishView: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }
                         .padding(.top, 25.0)
-//                        Spacer()
                     }
                 )
                 .onAppear{
                     loadUser()
                 }
-            
             Button(action: {
-                let now = Date()
-                let dtFormatter = DateFormatter()
-                dtFormatter.dateStyle = .long
-                dtFormatter.timeStyle = .long
-                let formattedTimestamp = dtFormatter.string(from: now)
-                
-                let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", timestamp: formattedTimestamp, track: "\(selectedTrack.name) - \(selectedTrack.artist)")
-                postString = "Posted!"
-                createPost(post: newPost)
+                    // Retrieves today's date
+                    let now = Date().formatted(date: .long, time: .omitted)
+                    let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", date: now, track: "\(selectedTrack.name)", artist: "\(selectedTrack.artist)", cover: "\(selectedTrack.cover)")
+                    postString = "Posted!"
+                    createPost(post: newPost)
             }, label: {
                 Rectangle()
                     .foregroundColor(Color.myMuzeAccent)
-                    .frame(width: 80, height: 30)
+                    .frame(width: 250, height: 30)
                     .cornerRadius(10)
                     .overlay(
                         Text("\(postString)")
@@ -151,7 +146,7 @@ struct PublishView: View {
                             .bold()
                     )
             })
-            
+            .disabled(hasPosted)
         }
     }
     
@@ -162,6 +157,10 @@ struct PublishView: View {
                 if let user = user {
                     let uid = user.uid
                     currentUser = try await getUser(uid: uid)
+                    if await didUserPost(uid: currentUser!.userID) {
+                        hasPosted = true
+                        postString = "You already posted today!"
+                    }
                 }
             } catch {
                     print("Error loading data:", error.localizedDescription)

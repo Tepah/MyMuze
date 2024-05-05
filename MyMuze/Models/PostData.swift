@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct PostData: Codable {
+struct PostData: Codable, Identifiable {
+    var id = UUID()
     var uid: String
     var username: String
-    var timestamp: String
+    var date: String
     var track: String
+    var artist: String
+    var cover: String
     var likes: Int?
     var comments: [String]?
 //    var postID: String?
@@ -19,9 +22,11 @@ struct PostData: Codable {
     func toDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         dictionary["username"] = username
-        dictionary["timestamp"] = timestamp
+        dictionary["date"] = date
         dictionary["uid"] = uid
         dictionary["track"] = track
+        dictionary["artist"] = artist
+        dictionary["cover"] = cover
         
         if let likes = likes {
             dictionary["likes"] = likes
