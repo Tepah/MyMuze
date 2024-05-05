@@ -22,6 +22,7 @@ struct SignUpView: View {
     @State private var phone1: String = ""
     @State private var phone2: String = ""
     @State private var phone3: String = ""
+    @State private var selectedImage: UIImage?
     
     private var phoneLimit3 = 4
     
@@ -37,37 +38,7 @@ struct SignUpView: View {
             .overlay(
                 VStack(spacing: 40) {
                     Spacer()
-//                    PhotosPicker(selection: $avatarItem, matching: .images) {
-//                        if let image = avatarItem?. {
-//                            image
-//                                .resizable()
-//                                .scaledToFit()
-//                                .aspectRatio(contentMode: .fill)
-//                                .frame(width: 230, height: 230)
-//                                .clipShape(Circle())
-//                                .foregroundColor(Color.gray)
-//                                .overlay(alignment: .bottomTrailing) {
-//                                    Image(systemName: "pencil.circle.fill")
-//                                        .symbolRenderingMode(.multicolor)
-//                                        .font(.system(size: 50))
-//                                        .foregroundColor(Color.myMuzeAccent)
-//                                }
-//                        } else {
-//                            Image(systemName: "person.circle.fill")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .aspectRatio(contentMode: .fill)
-//                                .frame(width: 230, height: 230)
-//                                .clipShape(Circle())
-//                                .foregroundColor(Color.gray)
-//                                .overlay(alignment: .bottomTrailing) {
-//                                    Image(systemName: "pencil.circle.fill")
-//                                        .symbolRenderingMode(.multicolor)
-//                                        .font(.system(size: 50))
-//                                        .foregroundColor(Color.myMuzeAccent)
-//                                }
-//                        }
-//                    }
+                    PictureChanger(selectedImage: $selectedImage)
                     TextField("Name", text: $name)
                         .frame(width: 275)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -152,6 +123,9 @@ struct SignUpView: View {
             }
             let user = Auth.auth().currentUser
             var pictureURL: String = "";
+            if let image = selectedImage {
+                pictureURL = await uploadImageToStorage(image: image, userID: user!.uid)
+            }
             let userData = UserData(profilePicture: pictureURL, username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
             authManager.phoneNumber = ""
             authManager.persistedPhoneNumber = ""

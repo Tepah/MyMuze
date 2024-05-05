@@ -12,47 +12,24 @@ import FirebaseAuth
 struct DebugToolsView: View {
     @EnvironmentObject var authManager: AuthManager
     
-    @State private var selectedImage: UIImage?
     @State private var isShowingPhotoPicker = false
-    @State private var loading = false
+    @State private var selectedImage: UIImage?
+    
+    let profilePicURL: String
     
     var body: some View {
         BackgroundView()
             .overlay(
         VStack {
             // Profile Picture Change
-            if let image = selectedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 230, height: 230)
-                    .clipShape(Circle())
-                    .foregroundColor(Color.gray)
-            } else {
-                Text("No image selected")
-            }
+            PictureChanger(selectedImage: $selectedImage, profilePicURL: profilePicURL)
             
-            Button("Change Profile Picture") {
-                self.isShowingPhotoPicker.toggle()
-            }
-            .padding()
-            .sheet(isPresented: $isShowingPhotoPicker) {
-                PhotoPicker(selectedImage: self.$selectedImage, isShowingPhotoPicker: self.$isShowingPhotoPicker) {
-                    isShowingPhotoPicker = false
-                }
-            }
-            .onChange(of: selectedImage) { image in
-                isShowingPhotoPicker = false
-            }
-            
-            Button("Save Profile Picture") {
+            Button("Save") {
                 Task {
                     if let image = selectedImage {
-                        let uid = Auth.auth().currentUser?.uid ?? "temp"
-                        loading = true
-                        let profilePicURL = await uploadImageToStorage(image: image, userID: uid)
-                        print(profilePicURL)
+                        let uid = Auth.auth().currentUser?.uid ?? "temp";
+                        let profilePicURL = await uploadImageToStorage(image: image, userID: uid);
+                        await updateProfilePictureUrl(uid: uid, profilePicURL: profilePicURL);
                     }
                 }
             }
@@ -155,54 +132,3 @@ struct DebugToolsView: View {
     }
 }
 
-struct PhotoPicker: UIViewControllerRepresentable {
-    @Binding var selectedImage: UIImage?
-    @Binding var isShowingPhotoPicker: Bool
-    var onDismiss: () -> Void
-
-    func makeUIViewController(context: Context) -> PHPickerViewController {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        configuration.selectionLimit = 1
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = context.coordinator
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
-        // Update the view controller if needed
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
-    class Coordinator: PHPickerViewControllerDelegate {
-        let parent: PhotoPicker
-        
-        init(parent: PhotoPicker) {
-            self.parent = parent
-        }
-        
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            if let itemProvider = results.first?.itemProvider,
-               itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
-                    if let image = image as? UIImage {
-                        DispatchQueue.main.async {
-                            self.parent.selectedImage = image
-                            self.parent.onDismiss() // Dismiss the picker
-                        }
-                    }
-                }
-            } else {
-                // Dismiss the picker if no image is selected
-                self.parent.onDismiss()
-            }
-        }
-    }
-}
-
-#Preview {
-    DebugToolsView()
-}

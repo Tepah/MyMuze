@@ -29,14 +29,20 @@ func uploadImageToStorage(image: UIImage, userID: String) async -> String {
     metadata.contentType = "image/jpeg"
     
     // Upload image data to Firebase Storage
-    imageRef.putData(imageData, metadata: metadata)
-    print("Upload success")
-    
+    let uploadTask = Task { () -> String in
+        let uploadTask =  imageRef.putData(imageData, metadata: metadata)
+        print("Upload success")
+            
+        let url = try await imageRef.downloadURL().absoluteString
+        return url
+    }
+        
     do {
-        let downloadURL = try await imageRef.downloadURL().absoluteString
-        return downloadURL
+        return try await uploadTask.value
     } catch {
-        print("Error getting download URL: \(error.localizedDescription)")
+        print("Error uploading image: \(error)")
         return ""
     }
 }
+
+

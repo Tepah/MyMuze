@@ -36,10 +36,10 @@ struct SearchItem: View {
                     URLImage(URL(string: self.profileInfo.profilePicture)!) { image in
                         image
                             .resizable()
-                            .frame(width: 55, height: 55)
-                            .clipShape(Circle())
-                            .padding(5)
+                            .aspectRatio(contentMode: .fill)
                     }
+                    .frame(width: 55, height: 55)
+                    .clipShape(Circle())
                 }
                 VStack(alignment: .leading) {
                     Text("@"+self.profileInfo.username)

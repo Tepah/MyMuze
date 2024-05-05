@@ -46,6 +46,20 @@ func addUserDataToFirestore(userData: UserData) {
     }
 }
 
+func updateProfilePictureUrl(uid: String, profilePicURL: String) async {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(uid)
+
+    // Update the profile picture URL in the user document
+    userRef.updateData(["profilePicture": profilePicURL]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
 func addFollowerToUserData(uid: String, followerUID: String) async {
     var db = Firestore.firestore()
     var userRef = db.collection("users").document(uid)
