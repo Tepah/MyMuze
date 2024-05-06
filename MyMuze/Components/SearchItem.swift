@@ -53,14 +53,6 @@ struct SearchItem: View {
                 .padding(.horizontal, 5)
                 .offset(y: 20)
                 Spacer()
-                Button(action: {
-                    print("Follow")
-                }) {
-                    Text("Follow")
-                        .padding(5)
-                        .background(RoundedRectangle(cornerRadius: 5).fill(Color.myMuzeAccent))
-                        .foregroundColor(Color.white)
-                }
             }
         }
     }
