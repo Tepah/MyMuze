@@ -51,7 +51,7 @@ struct PictureChanger: View {
                                 isShowingPhotoPicker = false
                             }
                     }
-            } else if profilePicURL != nil {
+            } else if profilePicURL != nil && profilePicURL != "" {
                 URLImage(URL(string: profilePicURL!)!) { image in
                     image
                         .resizable()

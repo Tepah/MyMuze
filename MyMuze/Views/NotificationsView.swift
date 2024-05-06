@@ -140,6 +140,7 @@ struct NotificationsView: View {
     /// - Returns: A view that displays a new Confirmed following
     struct newConfirm: View {
         let notification: Notification
+        var userPic: String?
         
         var body: some View {
             HStack {
@@ -169,6 +170,7 @@ struct NotificationsView: View {
     struct newRequest: View {
         @Binding var notifications: [Notification]
         let notification: Notification
+        var userPic: String?
         
         var body: some View {
             HStack {

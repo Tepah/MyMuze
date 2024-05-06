@@ -123,10 +123,10 @@ struct PostItem: View {
                     URLImage(URL(string: self.postInfo.cover)!) { image in
                         image
                             .resizable()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(5)
                     }
+                    .frame(width: 40, height: 40, alignment: .leading)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(5)
                     VStack {
                         Text(postInfo.track)
                             .foregroundColor(Color.white)
