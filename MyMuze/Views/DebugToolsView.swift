@@ -6,15 +6,35 @@
 //
 
 import SwiftUI
+import PhotosUI
 import FirebaseAuth
 
 struct DebugToolsView: View {
     @EnvironmentObject var authManager: AuthManager
     
+    @State private var isShowingPhotoPicker = false
+    @State private var selectedImage: UIImage?
+    
+    let profilePicURL: String
+    
     var body: some View {
         BackgroundView()
             .overlay(
         VStack {
+            // Profile Picture Change
+            PictureChanger(selectedImage: $selectedImage, profilePicURL: profilePicURL)
+            
+            Button("Save") {
+                Task {
+                    if let image = selectedImage {
+                        let uid = Auth.auth().currentUser?.uid ?? "temp";
+                        let profilePicURL = await uploadImageToStorage(image: image, userID: uid);
+                        await updateProfilePictureUrl(uid: uid, profilePicURL: profilePicURL);
+                    }
+                }
+            }
+            
+            // Sign Out Button
             Button(action: {
                 do {
                     // Set isLoggedIn to false
@@ -112,6 +132,3 @@ struct DebugToolsView: View {
     }
 }
 
-#Preview {
-    DebugToolsView()
-}

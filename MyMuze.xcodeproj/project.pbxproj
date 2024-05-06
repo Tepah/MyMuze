@@ -44,11 +44,13 @@
 		C1ABF3362B968F2A005C6B1E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABF3352B968F2A005C6B1E /* UserData.swift */; };
 		C1ABF3382B969288005C6B1E /* PhoneSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABF3372B969288005C6B1E /* PhoneSignInView.swift */; };
 		C1ABF33A2B9699AA005C6B1E /* Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ABF3392B9699AA005C6B1E /* Firestore.swift */; };
+		C1C099F52BE5F2C200646A11 /* PictureChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C099F42BE5F2C200646A11 /* PictureChanger.swift */; };
 		C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E432B6DC55E001AADDA /* AppleButton.swift */; };
 		C1C46E462B6DC8EF001AADDA /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */; };
 		C1C46E482B6DC946001AADDA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C46E472B6DC946001AADDA /* Color.swift */; };
 		C1C46E4E2B6DCD86001AADDA /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C1C46E4D2B6DCD86001AADDA /* GoogleSignIn */; };
 		C1C46E502B6DCE93001AADDA /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1C46E4F2B6DCE93001AADDA /* GoogleSignInSwift */; };
+		C1D74F702BE353E6004CA4DC /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D74F6F2BE353E6004CA4DC /* FirebaseStorage.swift */; };
 		C1D816652B83EE3D00513C21 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D816642B83EE3D00513C21 /* SignUpView.swift */; };
 		C1D816692B84069D00513C21 /* NavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D816682B84069D00513C21 /* NavigationBarExtensions.swift */; };
 		C8767CF6A974C5D647564DBF /* Pods_MyMuze_MyMuzeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA52254235F239D862FFB625 /* Pods_MyMuze_MyMuzeUITests.framework */; };
@@ -112,9 +114,11 @@
 		C1ABF3352B968F2A005C6B1E /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C1ABF3372B969288005C6B1E /* PhoneSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSignInView.swift; sourceTree = "<group>"; };
 		C1ABF3392B9699AA005C6B1E /* Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firestore.swift; sourceTree = "<group>"; };
+		C1C099F42BE5F2C200646A11 /* PictureChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureChanger.swift; sourceTree = "<group>"; };
 		C1C46E432B6DC55E001AADDA /* AppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleButton.swift; sourceTree = "<group>"; };
 		C1C46E452B6DC8EF001AADDA /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		C1C46E472B6DC946001AADDA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		C1D74F6F2BE353E6004CA4DC /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		C1D816642B83EE3D00513C21 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C1D816682B84069D00513C21 /* NavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarExtensions.swift; sourceTree = "<group>"; };
 		CA52254235F239D862FFB625 /* Pods_MyMuze_MyMuzeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMuze_MyMuzeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +287,8 @@
 				C1ABF3392B9699AA005C6B1E /* Firestore.swift */,
 				C1792CBE2BA101A5006622B0 /* SearchItem.swift */,
 				7E7FC21E2BD202BC001D6C8E /* SpotifyTrackItem.swift */,
+				C1D74F6F2BE353E6004CA4DC /* FirebaseStorage.swift */,
+				C1C099F42BE5F2C200646A11 /* PictureChanger.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -569,10 +575,12 @@
 				7E7FC21F2BD202BC001D6C8E /* SpotifyTrackItem.swift in Sources */,
 				C1792CBF2BA101A5006622B0 /* SearchItem.swift in Sources */,
 				C1ABF33A2B9699AA005C6B1E /* Firestore.swift in Sources */,
+				C1C099F52BE5F2C200646A11 /* PictureChanger.swift in Sources */,
 				C1ABF3382B969288005C6B1E /* PhoneSignInView.swift in Sources */,
 				C17244C12BC0AFC700F312AE /* NotificationsView.swift in Sources */,
 				C1ABF3362B968F2A005C6B1E /* UserData.swift in Sources */,
 				C17244C32BC0B70700F312AE /* NotificationData.swift in Sources */,
+				C1D74F702BE353E6004CA4DC /* FirebaseStorage.swift in Sources */,
 				7EC1E8F62BE2F854005830A0 /* PostData.swift in Sources */,
 				C1C46E442B6DC55E001AADDA /* AppleButton.swift in Sources */,
 				7EBA74552BCF3BCB00E4536A /* SpotifyAPIClient.swift in Sources */,

@@ -15,7 +15,6 @@ struct SignUpView: View {
     @EnvironmentObject var authManager: AuthManager
     
     @State private var avatarItem: PhotosPickerItem?
-    @State private var avatarImage: Image?
     @State private var name: String = ""
     @State private var username: String = ""
     @State private var email: String = ""
@@ -23,6 +22,7 @@ struct SignUpView: View {
     @State private var phone1: String = ""
     @State private var phone2: String = ""
     @State private var phone3: String = ""
+    @State private var selectedImage: UIImage?
     
     private var phoneLimit3 = 4
     
@@ -38,21 +38,7 @@ struct SignUpView: View {
             .overlay(
                 VStack(spacing: 40) {
                     Spacer()
-                    PhotosPicker(selection: $avatarItem, matching: .images) {
-                        (avatarImage ?? Image(systemName: "person.circle.fill"))
-                            .resizable()
-                            .scaledToFit()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 230, height: 230)
-                            .clipShape(Circle())
-                            .foregroundColor(Color.gray)
-                            .overlay(alignment: .bottomTrailing) {
-                                Image(systemName: "pencil.circle.fill")
-                                    .symbolRenderingMode(.multicolor)
-                                    .font(.system(size: 50))
-                                    .foregroundColor(Color.myMuzeAccent)
-                            }
-                    }
+                    PictureChanger(selectedImage: $selectedImage)
                     TextField("Name", text: $name)
                         .frame(width: 275)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -119,15 +105,6 @@ struct SignUpView: View {
                         dismissButton: .default(Text("OK"))
                     )
                 }
-                .onChange(of: avatarItem) {
-                    Task {
-                        if let loaded = try? await avatarItem?.loadTransferable(type: Image.self) {
-                            avatarImage = loaded
-                        } else {
-                            print("Failed")
-                        }
-                    }
-                }
             )
             .navigationBarTitle("Sign Up", displayMode: .inline)
             .navigationBarTitleFont(size: 20)
@@ -136,19 +113,25 @@ struct SignUpView: View {
     }
     
     func handleSignUp() {
-        print(authManager.phoneNumber)
-        var phone: String
-        if (authManager.phoneNumber == "") {
-            phone = "+1"+phone1+phone2+phone3
-        } else {
-            phone = authManager.phoneNumber
+        Task {
+            print(authManager.phoneNumber)
+            var phone: String
+            if (authManager.phoneNumber == "") {
+                phone = "+1"+phone1+phone2+phone3
+            } else {
+                phone = authManager.phoneNumber
+            }
+            let user = Auth.auth().currentUser
+            var pictureURL: String = "";
+            if let image = selectedImage {
+                pictureURL = await uploadImageToStorage(image: image, userID: user!.uid)
+            }
+            let userData = UserData(profilePicture: pictureURL, username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
+            authManager.phoneNumber = ""
+            authManager.persistedPhoneNumber = ""
+            addUserDataToFirestore(userData: userData)
+            authManager.signUp()
         }
-        let user = Auth.auth().currentUser
-        let userData = UserData(profilePicture: "", username: username, email: email, name: name, userID: user!.uid, phone: phone, followers: [], following: [], privateAcc: false)
-        authManager.phoneNumber = ""
-        authManager.persistedPhoneNumber = ""
-        addUserDataToFirestore(userData: userData)
-        authManager.signUp()
     }
     
     func limitText(_ upper: Int) {
@@ -185,6 +168,12 @@ extension View {
         if let newValue = F.init(rawValue: nextValue) {
             field.wrappedValue = newValue
         }
+    }
+}
+
+extension UIImage {
+    var jpegRepresentation: Data? {
+        return self.jpegData(compressionQuality: 0.8)
     }
 }
 

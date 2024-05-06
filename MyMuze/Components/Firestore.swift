@@ -46,6 +46,20 @@ func addUserDataToFirestore(userData: UserData) {
     }
 }
 
+func updateProfilePictureUrl(uid: String, profilePicURL: String) async {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(uid)
+
+    // Update the profile picture URL in the user document
+    userRef.updateData(["profilePicture": profilePicURL]) { error in
+        if let error = error {
+            print("Error updating document: \(error.localizedDescription)")
+        } else {
+            print("Document updated successfully!")
+        }
+    }
+}
+
 func addFollowerToUserData(uid: String, followerUID: String) async {
     var db = Firestore.firestore()
     var userRef = db.collection("users").document(uid)
@@ -112,6 +126,41 @@ func getUser(uid: String) async throws -> UserData {
     let followers = document.get("followers") as! [String]
     let following = document.get("following") as! [String]
     return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: uid, phone: "", followers: followers, following: following, privateAcc: privateAcc)
+}
+
+func getUserByUsername(username: String) async throws -> UserData {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(username)
+    
+    // Retrieves document with matching uid
+    let document = try await userRef.getDocument()
+    
+    // Retrieves user data and casts to userData object
+    let profilePic = document.get("profilePicture") as! String
+    let userID = document.get("userID") as! String
+    let name = document.get("name") as! String
+    let email = document.get("email") as! String
+    let privateAcc = document.get("privateAcc") as! Bool
+    let followers = document.get("followers") as! [String]
+    let following = document.get("following") as! [String]
+    return UserData(profilePicture: profilePic, username: username, email: email, name: name, userID: userID, phone: "", followers: followers, following: following, privateAcc: privateAcc)
+}
+
+func getProfilePic(username: String) async -> String {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(username)
+    
+    do {
+        // Retrieves document with matching uid
+        let document = try await userRef.getDocument()
+        
+        // Retrieves user data and casts to userData object
+        let profilePic = document.get("profilePicture") as! String
+        return profilePic
+    } catch {
+        print("Error getting profile picture:", error.localizedDescription)
+        return ""
+    }
 }
 
 func searchUsersWithPrefix(prefix: String) async throws -> [String] {

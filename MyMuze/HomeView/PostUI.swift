@@ -110,10 +110,10 @@ struct PublishView: View {
                         URLImage(URL(string: self.selectedTrack.cover)!) { image in
                             image
                                 .resizable()
-                                .frame(width: 300, height: 300)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .padding(.horizontal, 10)
                         }
+                        .frame(width: 300, height: 300)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.horizontal, 10)
                         VStack{
                             Text("\(selectedTrack.name)")
                                 .bold()

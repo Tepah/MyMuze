@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import URLImage
 
 struct ExternalProfileView: View {
     @EnvironmentObject var authManager: AuthManager;
@@ -27,11 +28,21 @@ struct ExternalProfileView: View {
                                 .scaleEffect(2)
                         } else {
                             // Temp profile pic
-                            Image(systemName: "person.fill")
-                                .resizable()
+                            if self.user.profilePicture == "" {
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .frame(width: 150, height: 150)
+                                    .background(Color.gray)
+                                    .clipShape(Circle())
+                            } else {
+                                URLImage(URL(string: self.user.profilePicture)!) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                }
                                 .frame(width: 150, height: 150)
-                                .background(Color.gray)
                                 .clipShape(Circle())
+                            }
                             Text(user.name)
                                 .foregroundColor(Color.white)
                                 .frame(maxWidth: .infinity)
