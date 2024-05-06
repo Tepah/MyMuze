@@ -40,7 +40,7 @@ struct PostUI: View {
                                     .padding(7.0)
                                     .background(Color.white)
                                     .cornerRadius(10)
-                                    .frame(height: 50)
+                                    .frame(width: 375, height: 50)
                                     .foregroundColor(Color.black)
                                     .autocapitalization(.none)
                                     .onSubmit {
