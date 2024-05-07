@@ -13,6 +13,7 @@ class SpotifyAPIClient {
     private let clientSecret = "8f01f4aa5cf045e395167820f98e6154"
     private let tokenURL = "https://accounts.spotify.com/api/token"
     private let searchURL = "https://api.spotify.com/v1/search"
+    private let trackEndpoint = "https://api.spotify.com/v1/tracks"
     
     func getAccessToken(completion: @escaping (String?) -> Void) {
         let parameters: [String: String] = [
@@ -68,7 +69,7 @@ class SpotifyAPIClient {
                                let album = item["album"] as? [String: Any],
                                let images = album["images"] as? [[String: Any]],
                                let cover = images.first?["url"] as? String {
-                                trackInfo.append(TrackData(spotifyID: id, name: name, artist: artist, cover: cover, url: url))
+                                trackInfo.append(TrackData(spotifyID: id, name: name, artist: artist, cover: cover, url: url, added: false))
                             }
                         }
                         completion(trackInfo)
@@ -82,4 +83,36 @@ class SpotifyAPIClient {
             }
     }
     
+    func getTrack(trackID: String, accessToken: String, completion: @escaping (TrackData?) -> Void) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)"
+        ]
+        
+        let trackURL = "\(trackEndpoint)/\(trackID)"
+        
+        AF.request(trackURL, method: .get, headers: headers)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    if let JSON = value as? [String: Any],
+                       let name = JSON["name"] as? String,
+                       let artists = JSON["artists"] as? [[String: Any]],
+                       let artist = artists.first?["name"] as? String,
+                       let album = JSON["album"] as? [String: Any],
+                       let externalURL = JSON["external_urls"] as? [String: Any],
+                       let url = externalURL["spotify"] as? String,
+                       let images = album["images"] as? [[String: Any]],
+                       let imageURL = images.first?["url"] as? String {
+                        let track = TrackData(spotifyID: trackID, name: name, artist: artist, cover: imageURL, url: url, added: true)
+                        completion(track)
+                    } else {
+                        completion(nil)
+                    }
+                case .failure(let error):
+                    print("Error searching tracks: \(error)")
+                    completion(nil)
+                }
+            }
+    }
 }
