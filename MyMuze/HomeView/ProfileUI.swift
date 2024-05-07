@@ -9,10 +9,13 @@ import SwiftUI
 import FirebaseAuth
 import URLImage
 
+
 struct ProfileUI: View {
     @State private var uid: String = ""
     @State private var currentUser: UserData? = nil
     @State var loading = true
+    @State var playlist: [TrackData] = []
+//    @State private var tempPlaylist: PlaylistData
     
     var body: some View {
         NavigationView {
@@ -90,14 +93,52 @@ struct ProfileUI: View {
                                 .overlay(.gray)
                                 .frame(height: 0.5)
                                 .background(Color.white)
-                            Text("Profile Playlist:")
-                                .foregroundColor(Color.white)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading, 10.0)
-                                .bold()
-                                .underline()
-                                .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                            HStack {
+                                Text("Profile Playlist:")
+                                    .foregroundColor(Color.white)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, 10.0)
+                                    .bold()
+                                    .underline()
+                                    .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
+                                Spacer()
+                                if !playlist.isEmpty {
+                                    NavigationLink(destination: BuildPlaylistView(uid: uid, playlist: playlist)) {
+                                        Image(systemName: "list.triangle")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(Color.white)
+                                            .padding(10)
+                                    }
+                                }
+                            }
                             // Playlist will show here
+                            if playlist.isEmpty {
+                                NavigationLink(destination: BuildPlaylistView(uid: uid, playlist: playlist)) {
+                                    Rectangle()
+                                        .frame(width: 200, height: 50)
+                                        .foregroundColor(Color.myMuzeAccent)
+                                        .cornerRadius(10)
+                                        .padding(10)
+                                        .overlay(Text("Create a playlist")
+                                            .bold()
+                                            .foregroundColor(Color.myMuzeWhite)
+                                        )
+                                }
+                            }
+                            else {
+                                List(playlist) {
+                                    track in SpotifyTrackItem(trackInfo: track)
+                                        .listRowBackground(Color.clear)
+                                        .listRowSeparatorTint(.myMuzeWhite)
+                                }
+                                .padding(.vertical, 10)
+                                .listStyle(PlainListStyle())
+                                .refreshable {
+                                    loading = true
+                                    loadProfileData()
+                                }
+                            }
                             Spacer()
                         }
                     }
@@ -114,8 +155,12 @@ struct ProfileUI: View {
             do {
                 let user = Auth.auth().currentUser
                 if let user = user {
-                    let uid = user.uid
+                    uid = user.uid
                     currentUser = try await getUser(uid: uid)
+                    if await hasPlaylist(uid: uid) {
+                        let tempPlaylist = try await getPlaylist(uid: uid)
+                        getSpotifyTracks(tempPlaylist: tempPlaylist)
+                    } 
                 }
                 loading = false;
             } catch {
@@ -123,7 +168,27 @@ struct ProfileUI: View {
             }
             
         }
-        
+    }
+    
+    func getSpotifyTracks(tempPlaylist: PlaylistData) {
+        if !playlist.isEmpty {
+            playlist = []
+        }
+        let spotifyClient = SpotifyAPIClient()
+        spotifyClient.getAccessToken { accessToken in
+            if let token = accessToken {
+//                print("Access Token: \(token)")
+                for track in tempPlaylist.tracks {
+                    spotifyClient.getTrack(trackID: track, accessToken: token) { trackInfo in
+                        if let trackInfo = trackInfo {
+                            playlist.append(trackInfo)
+                        } else {
+                            print("Failed to fetch track info for track \(track)")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
