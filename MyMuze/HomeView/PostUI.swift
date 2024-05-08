@@ -131,10 +131,10 @@ struct PublishView: View {
                 }
             Button(action: {
                     // Retrieves today's date
-                    let now = Date().formatted(date: .long, time: .omitted)
-                    let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", date: now, track: "\(selectedTrack.name)", artist: "\(selectedTrack.artist)", cover: "\(selectedTrack.cover)")
-                    postString = "Posted!"
-                    createPost(post: newPost)
+                let now = Date().formatted(date: .long, time: .omitted)
+                let newPost = PostData(uid: currentUser?.userID ?? "uid", username: currentUser?.username ?? "username", date: now, track: "\(selectedTrack.name)", artist: "\(selectedTrack.artist)", cover: "\(selectedTrack.cover)", songURL: "\(selectedTrack.url)", likes: [], comments: [])
+                createPost(post: newPost)
+                postString = "Posted!"
             }, label: {
                 Rectangle()
                     .foregroundColor(Color.myMuzeAccent)

@@ -32,8 +32,10 @@ func uploadImageToStorage(image: UIImage, userID: String) async -> String {
     let uploadTask = Task { () -> String in
         let uploadTask =  imageRef.putData(imageData, metadata: metadata)
         print("Upload success")
-            
-        let url = try await imageRef.downloadURL().absoluteString
+        var url = ""
+        while url == "" {
+            url = try await imageRef.downloadURL().absoluteString
+        }
         return url
     }
         

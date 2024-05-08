@@ -15,9 +15,10 @@ struct PostData: Codable, Identifiable {
     var track: String
     var artist: String
     var cover: String
-    var likes: Int?
-    var comments: [String]?
-//    var postID: String?
+    var songURL: String?
+    var likes: [String]
+    var comments: [String]
+    var postID: String?
     
     func toDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [:]
@@ -27,16 +28,11 @@ struct PostData: Codable, Identifiable {
         dictionary["track"] = track
         dictionary["artist"] = artist
         dictionary["cover"] = cover
-        
-        if let likes = likes {
-            dictionary["likes"] = likes
+        dictionary["likes"] = likes
+        dictionary["comments"] = comments
+        if let songURL = songURL {
+            dictionary["songURL"] = songURL
         }
-        if let comments = comments {
-            dictionary["comments"] = comments
-        }
-//        if let postID = postID {
-//            dictionary["postID"] = postID
-//        }
 
         return dictionary
     }

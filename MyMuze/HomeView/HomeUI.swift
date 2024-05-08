@@ -10,9 +10,11 @@ import FirebaseAuth
 import URLImage
 
 struct HomeUI: View {
-    @State var loading = true
+    @State private var showCommentsModal: Bool = false
+    @State private var loading = true
     @State var notifications = [Notification]()
     @State var postFeed: [PostData] = []
+    @State var currentPostData: PostData = PostData(uid: "", username: "", date: "", track: "", artist: "", cover: "", likes: [], comments: [])
     @State var currentDate = Date().formatted(date: .long, time: .omitted)
     
     let uid = Auth.auth().currentUser?.uid ?? "temp"
@@ -21,67 +23,81 @@ struct HomeUI: View {
         NavigationView {
             BackgroundView()
                 .overlay(
-                    VStack {
-                        if loading {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(2)
-                        } else {
-                            HStack {
-                                Text("Home")
-                                    .foregroundColor(Color.white)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .bold()
-                                    .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
-                                    .padding([.leading, .bottom], 10.0)
-                                Spacer()
-                                NavigationLink(destination: ProfileSearchView()) {
-                                    Image(systemName: "magnifyingglass")
-                                        .resizable()
-                                        .frame(width: 20, height: 20)
+                    ZStack {
+                        VStack {
+                            if loading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                    .scaleEffect(2)
+                            } else {
+                                HStack {
+                                    Text("Home")
                                         .foregroundColor(Color.white)
-                                        .padding(10)
-                                }
-                                if notifications.count > 0 {
-                                    NavigationLink(destination: NotificationsView(notifications: notifications)) {
-                                        Image(systemName: "bell.fill")
-                                            .resizable()
-                                            .frame(width: 20, height: 20)
-                                            .foregroundColor(Color.white)
-                                            .padding(10)
-                                            .overlay(
-                                                Circle()
-                                                    .foregroundColor(.red)
-                                                    .frame(width: 10, height: 10)
-                                                    .offset(x: 10, y: -10)
-                                            )
-                                    }
-                                } else {
-                                    NavigationLink(destination: NotificationsView(notifications: notifications)) {
-                                        Image(systemName: "bell")
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .bold()
+                                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                                        .padding([.leading, .bottom], 10.0)
+                                    Spacer()
+                                    NavigationLink(destination: ProfileSearchView()) {
+                                        Image(systemName: "magnifyingglass")
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(Color.white)
                                             .padding(10)
                                     }
+                                    if notifications.count > 0 {
+                                        NavigationLink(destination: NotificationsView(notifications: notifications)) {
+                                            Image(systemName: "bell.fill")
+                                                .resizable()
+                                                .frame(width: 20, height: 20)
+                                                .foregroundColor(Color.white)
+                                                .padding(10)
+                                                .overlay(
+                                                    Circle()
+                                                        .foregroundColor(.red)
+                                                        .frame(width: 10, height: 10)
+                                                        .offset(x: 10, y: -10)
+                                                )
+                                        }
+                                    } else {
+                                        NavigationLink(destination: NotificationsView(notifications: notifications)) {
+                                            Image(systemName: "bell")
+                                                .resizable()
+                                                .frame(width: 20, height: 20)
+                                                .foregroundColor(Color.white)
+                                                .padding(10)
+                                        }
+                                    }
                                 }
+                                Divider()
+                                    .overlay(.white)
+                                    .frame(height: 2)
+                                    .background(Color.white)
+                                List(postFeed) {post in
+                                    PostItem(showCommentsModal: $showCommentsModal, currentPostData: $currentPostData, postInfo: post)
+                                }
+                                .accentColor(Color.myMuzeWhite)
+                                .listStyle(PlainListStyle())
+                                .refreshable {
+                                    loadData()
+                                }
+                                Spacer()
                             }
-                            Divider()
-                                .overlay(.white)
-                                .frame(height: 2)
-                                .background(Color.white)
-                            List(postFeed) {
-                                post in PostItem(postInfo: post)
-                            }
-                            .accentColor(Color.myMuzeWhite)
-                            .listStyle(PlainListStyle())
-                            .refreshable {
-                                loadData()
-                            }
-                            Spacer()
+                        }
+                        
+                        if showCommentsModal {
+                            CommentView(isPresented: $showCommentsModal, post: currentPostData)
+                                .transition(.move(edge: .bottom))
+                                .edgesIgnoringSafeArea(.bottom)
                         }
                     }
                 )
+                .onChange(of: showCommentsModal) { _ in
+                    if showCommentsModal == false {
+                        loading = true;
+                        loadData()
+                    }
+                }
                 .onAppear() {
                     loading = true;
                     loadData();
@@ -102,13 +118,11 @@ struct HomeUI: View {
 }
 
 struct PostItem: View {
-    @State var isLiked = false
+    @State private var isLiked = false
+    @Binding var showCommentsModal: Bool
+    @Binding var currentPostData: PostData
     
     let postInfo: PostData
-    
-    init(postInfo: PostData) {
-        self.postInfo = postInfo
-    }
     
     var body: some View {
         HStack {
@@ -136,6 +150,10 @@ struct PostItem: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
+                .onTapGesture {
+                    showCommentsModal = true
+                    currentPostData = postInfo
+                }
             }
             Image(systemName: isLiked ? "heart.fill" : "heart")
                 .resizable()
@@ -146,14 +164,11 @@ struct PostItem: View {
                     isLiked.toggle()
                     // TODO: Add a function to add likes
                 }
-            // TODO: implement comment button
-//            Image(systemName: "message")
-//                .foregroundColor(Color.myMuzeAccent)
         }
         .listRowBackground(Color.clear)
         .listRowSeparatorTint(.myMuzeWhite)
         .padding(.leading, 10.0)
-    }
+        }
 }
 
 #Preview {
