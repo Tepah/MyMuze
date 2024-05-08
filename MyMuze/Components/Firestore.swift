@@ -204,6 +204,26 @@ func createPost(post: PostData) {
     }
 }
 
+func getPost(postID: String) async throws -> PostData {
+    let db = Firestore.firestore()
+    let postRef = db.collection("posts").document(postID)
+    
+    // Retrieves document with matching postID
+    let document = try await postRef.getDocument()
+    
+    // Retrieves post data and casts to PostData object
+    let username = document.get("username") as! String
+    let date = document.get("date") as! String
+    let uid = document.get("uid") as! String
+    let track = document.get("track") as! String
+    let artist = document.get("artist") as! String
+    let cover = document.get("cover") as! String
+    let likes = document.get("likes") as? [String]
+    let comments = document.get("comments") as? [String]
+    let postID = document.documentID
+    return PostData(uid: uid, username: username, date: date, track: track, artist: artist, cover: cover, likes: likes ?? [], comments: comments ?? [], postID: postID)
+}
+
 func collectDailyFeed(date: String) async throws -> [PostData] {
     let db = Firestore.firestore()
     let postCollection = db.collection("posts")
@@ -222,9 +242,10 @@ func collectDailyFeed(date: String) async throws -> [PostData] {
         let track = document.get("track") as! String
         let artist = document.get("artist") as! String
         let cover = document.get("cover") as! String
-//        let likes = document.get("likes") as? Int
-//        let comments = document.get("comments") as? [String]
-        return PostData(uid: uid, username: username, date: date, track: track, artist: artist, cover: cover)
+        let likes = document.get("likes") as? [String]
+        let comments = document.get("comments") as? [String]
+        let postID = document.documentID
+        return PostData(uid: uid, username: username, date: date, track: track, artist: artist, cover: cover, likes: likes ?? [], comments: comments ?? [], postID: postID)
     }
 
     return posts
@@ -333,6 +354,18 @@ func updatePlaylist(uid: String, playlist: [String]) async {
     }
 }
 
+func addCommentToPost(postID: String, comment: String) async throws {
+    let db = Firestore.firestore()
+    let postRef = db.collection("posts").document(postID)
+
+    postRef.updateData(["comments": FieldValue.arrayUnion([comment])]) { error in
+        if let error = error {
+            print("Error adding comment to post: \(error.localizedDescription)")
+        } else {
+            print("Comment added successfully!")
+        }
+    }
+}
 
 // Firestore Notification Collection Functions
 func createNotification(notification: Notification) {
@@ -400,5 +433,42 @@ func deleteNotification(notification: String) {
         } else {
             print("Notification deleted successfully!")
         }
+    }
+}
+
+// Firestore Comment Collection Functions
+func createComment(comment: CommentData) async -> String {
+    let db = Firestore.firestore()
+    do {
+        let commentDict = comment.toDictionary()
+        // Add a new document to the specified collection with the provided data
+        let documentReference = try await db.collection("comments").addDocument(data: commentDict)
+
+        // Return the document ID of the newly created document
+        return documentReference.documentID
+    } catch {
+        // Error occurred while posting data to Firestore
+        print("Error creating comment:", error.localizedDescription)
+        return ""
+    }
+}
+
+func getCommentByID(commentID: String) async throws -> CommentData {
+    let db = Firestore.firestore()
+    let commentsCollection = db.collection("comments")
+
+    do {
+        // Fetch the document asynchronously
+        let document = try await commentsCollection.document(commentID).getDocument()
+        
+        let uid = document.get("uid") as! String
+        let username = document.get("username") as! String
+        let comment = document.get("comment") as! String
+        let date = document.get("date") as! String
+        
+        return CommentData(uid: uid, username: username, date: date, comment: comment)
+    } catch {
+        // Error occurred while fetching the document
+        throw error
     }
 }
