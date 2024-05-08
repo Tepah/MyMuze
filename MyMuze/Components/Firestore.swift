@@ -272,6 +272,88 @@ func didUserPost(uid: String) async -> Bool {
     }
 }
 
+// Firestore Playlist Collection Function(s)
+func createPlaylist(playlist: PlaylistData) {
+    let db = Firestore.firestore()
+    let playlistRef = db.collection("playlists").document()
+    
+    let playlistDict = playlist.toDictionary()
+    
+    playlistRef.setData(playlistDict) { error in
+        if let error = error {
+            print("Error adding post: \(error.localizedDescription)")
+        } else {
+            print("Playlist created successfully!")
+        }
+    }
+}
+
+func getPlaylist(uid: String) async throws -> PlaylistData {
+    let db = Firestore.firestore()
+    let playlistCollection = db.collection("playlists")
+    var resultPlaylist: PlaylistData = PlaylistData(uid: uid, tracks: [])
+    // Perform a query to find the document with the specified UID
+    let playlistQuery = playlistCollection.whereField("uid", isEqualTo: uid)
+    
+    do {
+        let snapshot = try await playlistQuery.getDocuments()
+        
+        for document in snapshot.documents {
+            // Retrieves playlist data and casts to playlistData object
+            let tracks = document.get("tracks") as! [String]
+            resultPlaylist = PlaylistData(uid: uid, tracks: tracks)
+            return resultPlaylist
+        }
+    }
+    return resultPlaylist
+}
+
+func hasPlaylist(uid: String) async -> Bool {
+    let db = Firestore.firestore()
+    let playlistCollection = db.collection("playlists")
+
+    // Perform a query to find the document with the specified UID
+    let playlistQuery = playlistCollection.whereField("uid", isEqualTo: uid)
+
+    do {
+        let snapshot = try await playlistQuery.getDocuments()
+
+        // Check if there is a playlist by the UID
+        return !snapshot.documents.isEmpty
+    } catch {
+        // Handle the error if needed
+        print("Error searching for playlist by user:", error.localizedDescription)
+        return false
+    }
+}
+
+func updatePlaylist(uid: String, playlist: [String]) async {
+    let db = Firestore.firestore()
+    let playlistCollection = db.collection("playlists")
+    
+    // Perform a query to find the document with the specified UID
+    let playlistQuery = playlistCollection.whereField("uid", isEqualTo: uid).limit(to: 1)
+    
+    do {
+        let snapshot = try await playlistQuery.getDocuments()
+
+        for document in snapshot.documents {
+            // Update the user's playlist
+            let doc = document.reference
+            doc.updateData(["tracks": playlist]) { error in
+                if let error = error {
+                    print("Error updating playlist: \(error.localizedDescription)")
+                } else {
+                    print("Playlist updated successfully!")
+                }
+            }
+        }
+    } catch {
+        // Handle the error if needed
+        print("Error searching for playlist by user:", error.localizedDescription)
+    }
+}
+
 func addCommentToPost(postID: String, comment: String) async throws {
     let db = Firestore.firestore()
     let postRef = db.collection("posts").document(postID)

@@ -14,6 +14,7 @@ struct ExternalProfileView: View {
     @State private var user: UserData = UserData(profilePicture: "", username: "", email: "", name: "", userID: "", phone: "", followers: [], following: [], privateAcc: false);
     @State private var loading = true;
     @State private var buttonLoading = false;
+    @State var playlist: [TrackData] = []
     let username: String;
     let uid: String;
     
@@ -124,7 +125,17 @@ struct ExternalProfileView: View {
                                     .bold()
                                     .underline()
                                     .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                                // Playlist will show here
+                                List(playlist) {
+                                    track in SpotifyTrackItem(trackInfo: track)
+                                        .listRowBackground(Color.clear)
+                                        .listRowSeparatorTint(.myMuzeWhite)
+                                }
+                                .padding(.vertical, 10)
+                                .listStyle(PlainListStyle())
+                                .refreshable {
+                                    loading = true
+                                    loadProfileData()
+                                }
                             }
                         }
                         Spacer()
@@ -143,6 +154,10 @@ struct ExternalProfileView: View {
         Task {
             do {
                 user = try await getUser(uid: uid);
+                if await hasPlaylist(uid: uid) {
+                    let tempPlaylist = try await getPlaylist(uid: uid)
+                    getSpotifyTracks(tempPlaylist: tempPlaylist)
+                } 
                 if user.username == ""  {
                     print("User not found")
                 } else {
@@ -153,7 +168,27 @@ struct ExternalProfileView: View {
             }
             
         }
-        
+    }
+    
+    func getSpotifyTracks(tempPlaylist: PlaylistData) {
+        if !playlist.isEmpty {
+            playlist = []
+        }
+        let spotifyClient = SpotifyAPIClient()
+        spotifyClient.getAccessToken { accessToken in
+            if let token = accessToken {
+//                print("Access Token: \(token)")
+                for track in tempPlaylist.tracks {
+                    spotifyClient.getTrack(trackID: track, accessToken: token) { trackInfo in
+                        if let trackInfo = trackInfo {
+                            playlist.append(trackInfo)
+                        } else {
+                            print("Failed to fetch track info for track \(track)")
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func handleFollow() {
